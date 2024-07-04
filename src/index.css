@@ -1,0 +1,35 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --color_background: rgb(56, 39, 100);
+  --color_heading_button: rgb(250, 205, 58);
+  --color_text: rgb(255, 255, 255);
+  --color_text_button: rgb(0, 0, 0);
+  --color_card_background: rgba(56, 39, 100, 0.5);
+  --color_error: rgb(255, 44, 44);
+  --color_in_case: rgb(102, 63, 156);
+}
+
+html {
+  background-color: var(--color_background);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color_heading_button);
+}
+
+p {
+  color: var(--color_text);
+}
