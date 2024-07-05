@@ -4,21 +4,29 @@
   --color_heading_button: rgb(250, 205, 58);
   --color_text: rgb(255, 255, 255);
   --color_text_button: rgb(0, 0, 0);
-  --color_card_background: rgba(56, 39, 100, 0.5);
+  --color_card_background: rgba(255, 255, 255, 0.1);
   --color_error: rgb(255, 44, 44);
   --color_in_case: rgb(102, 63, 156);
 }
-
-html {
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
   background-color: var(--color_background);
 }
 
 body {
-  margin: 0;
-  display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+main {
+  margin: 10px;
 }
 
 h1,
