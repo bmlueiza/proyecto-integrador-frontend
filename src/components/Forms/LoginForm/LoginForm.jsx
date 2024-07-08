@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 
 const LoginForm = ({ onLogin }) => {
-  const [rut, setRut] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
@@ -18,12 +18,12 @@ const LoginForm = ({ onLogin }) => {
         <label>
           Rut:
           <input
-            type="text"
-            value={rut}
-            onChange={(e) => setRut(e.target.value)}
-            pattern="\d{7,8}-\d"
-            placeholder="11111111-1"
-            title="Ingrese su rut sin puntos y con digito verificador"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="ejemplo@minga.cl"
+            pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
+            title="Ingrese su correo electrónico"
             required
           />{" "}
         </label>
@@ -35,12 +35,12 @@ const LoginForm = ({ onLogin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="**********"
-            title="Ingrese su constraseña aquí"
+            title="Ingrese su constraseña"
             required
           />
         </label>
       </div>
-      <button type="submit">A minguear!</button>
+      <button type="submit">¡A minguear!</button>
       {message && <p>{message}</p>}
     </form>
   );
