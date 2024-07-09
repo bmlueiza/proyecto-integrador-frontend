@@ -1,4 +1,6 @@
 //Dar id o nombre(clase?) a los inputs y form
+//Generar comprobaciones de mail y password
+//Generar salida onLogin
 import React, { useState } from "react";
 
 const LoginForm = ({ onLogin }) => {
