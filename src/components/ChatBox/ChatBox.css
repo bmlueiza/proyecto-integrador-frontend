@@ -1,0 +1,95 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.contenedor {
+  width: 800px;
+  height: auto;
+  padding: 50px 50px 100px 100px; /* Espacio interno de cada div */
+  background-color: var(--color_card_background);
+  border-radius: 20px;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+form {
+  padding: 50px 50px 50px 50px;
+}
+
+input {
+  border: none;
+  border-radius: 20px;
+  padding: 15px 120px;
+  margin: 5px 50px 20px 50px;
+
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+
+textarea {
+  border-radius: 20px;
+  border: none; /* Eliminar borde */
+  padding: 30px;
+  margin: 10px 50px 50px 50px;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+
+input[type="submit"] {
+  background-color: var(--color_heading_button);
+  color: var(--color_text_button);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  padding: 10px 100px; /* Espacio interno del botón */
+  border: none; /* Eliminar borde */
+  border-radius: 20px; /* Bordes redondeados */
+  cursor: pointer; /* Cambiar el cursor al pasar por encima */
+  display: flex;
+  margin: 0 auto;
+}
+
+label {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: var(--color_text);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px 50px 5px 50px;
+}
+
+h2 {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 55px;
+}
+
+@media (max-width: 768px) {
+  .contenedor {
+    width: 90%;
+    padding: 30px;
+  }
+  form {
+    padding: 30px;
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    padding: 10px;
+    margin: 5px 30px 15px 30px;
+  }
+
+  input[type="submit"] {
+    font-size: 24px;
+    padding: 10px 50px;
+  }
+
+  label {
+    font-size: 16px;
+    margin: 5px 30px 5px 30px;
+  }
+
+  h2 {
+    font-size: 40px;
+  }
+}
