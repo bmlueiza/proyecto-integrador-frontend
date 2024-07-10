@@ -1,3 +1,7 @@
+.main {
+  margin: 0 5%;
+}
+
 .cards_professionals {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -60,10 +64,6 @@
 .filtro_busqueda:hover,
 .filtro_busqueda:focus {
   border-color: var(--color_in_case);
-}
-.filtro_busqueda option {
-  background-color: var(--color_heading_button);
-  color: var(--color_text_button);
 }
 .filtro_busqueda option:hover {
   background-color: var(--color_in_case);

@@ -1,68 +1,94 @@
 import "./Categoria.css";
 import ResultadoCategoria from "../../components/Cards/ResultadoCategoria/ResultadoCategoria";
-const professionals = [
-  {
-    id: 1,
-    nombre: "Juan",
-    apellido_paterno: "Pérez",
-    apellido_materno: "González",
-    disponibilidad: true,
-    puntuacion: 4,
-    categorias: ["Carpintería", "Electricidad"],
-    comunas: ["Maípu", "El Bosque"],
-  },
-  {
-    id: 2,
-    nombre: "María",
-    apellido_paterno: "González",
-    apellido_materno: "Pérez",
-    disponibilidad: false,
-    puntuacion: 3,
-    categorias: ["Gasfitería", "Carpintería"],
-    comunas: ["La Reina", "Ñuñoa"],
-  },
-  {
-    id: 3,
-    nombre: "José",
-    apellido_paterno: "González",
-    apellido_materno: "de Bustamante",
-    disponibilidad: true,
-    puntuacion: 5,
-    categorias: ["Electricidad", "Gasfitería"],
-    comunas: ["Huechuraba", "Quilicura"],
-  },
-];
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-function Categoria({ categoria_nombre }) {
+const client = axios.create({
+  baseURL: "http://localhost:8080/api/colaborador/categoria",
+});
+
+const categoriasConTilde = {
+  electricidad: "Electricidad",
+  gasfiteria: "Gasfitería",
+  construccion: "Construcción",
+  carpinteria: "Carpintería",
+  albanileria: "Albañilería",
+  pintura: "Pintura",
+  jardineria: "Jardinería",
+};
+
+function capitalizeAndTildeCategory(category) {
+  const lowerCaseCategory = category.toLowerCase();
+  return categoriasConTilde[lowerCaseCategory] || lowerCaseCategory;
+}
+
+function Categoria() {
+  const { nombre } = useParams();
+  const nombreConTilde = capitalizeAndTildeCategory(nombre);
+
+  const [professionals, setProfessionals] = useState([]);
+  const [filters, setFilters] = useState({ comuna: "", puntuacion: "" });
+  const [comunas, setComunas] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/comunas")
+      .then((response) => {
+        setComunas(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching comunas:", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const { comuna, puntuacion } = filters;
+    let url = `/${nombre}?disponibilidad=1`;
+    if (comuna) url += `&comuna=${comuna}`;
+    if (puntuacion) url += `&puntuacion=${puntuacion}`;
+
+    client
+      .get(url)
+      .then((response) => {
+        setProfessionals(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [nombre, filters]);
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
+  };
+
   return (
     <main className="main">
       <div className="title_search_filter">
-        <h1>{categoria_nombre}</h1>
+        <h1>{nombreConTilde}</h1>
         <div className="search_filter">
-          <div className="buscador">
-            <input
-              id="input_buscar_profesional"
-              type="text"
-              placeholder={`Buscar profesional de ${categoria_nombre}`}
-            />
-            <button className="btn btn_text">Buscar</button>
-          </div>
           <div className="filtros">
-            <select className="filtro_busqueda" name="comuna" id="comuna">
-              <option value="0">Selecciona una comuna</option>
-              <option value="1">Maipú</option>
-              <option value="2">El Bosque</option>
-              <option value="3">La Reina</option>
-              <option value="4">Ñuñoa</option>
-              <option value="5">Huechuraba</option>
-              <option value="6">Quilicura</option>
+            <select
+              className="filtro_busqueda"
+              name="comuna"
+              id="comuna"
+              onChange={handleFilterChange}
+            >
+              <option value="">Selecciona una comuna</option>
+              {comunas.map((comuna) => (
+                <option key={comuna.id} value={comuna.nombre}>
+                  {comuna.nombre}
+                </option>
+              ))}
             </select>
             <select
               className="filtro_busqueda"
               name="puntuacion"
               id="puntuacion"
+              onChange={handleFilterChange}
             >
-              <option value="0">Selecciona una puntuación</option>
+              <option value="">Selecciona una puntuación</option>
               <option value="1">1 estrella</option>
               <option value="2">2 estrellas</option>
               <option value="3">3 estrellas</option>
