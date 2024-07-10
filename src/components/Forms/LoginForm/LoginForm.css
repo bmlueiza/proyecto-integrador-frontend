@@ -1,0 +1,43 @@
+form {
+  margin: 15;
+  padding: 0;
+  background-color: var(--color_background);
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+}
+
+.login-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  background-color: var(--color_card_background);
+  gap: 10px;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 5px;
+  width: 95%;
+  overflow: hidden;
+  color: var(--color_text);
+}
+
+.form-label {
+  padding: 5px;
+  margin: 5px;
+  align-items: center;
+}
+
+.login-input {
+  margin: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border-color: var(--color_card_background);
+}
+#rol {
+  cursor: pointer;
+}

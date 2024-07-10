@@ -1,25 +1,51 @@
-//Dar id o nombre(clase?) a los inputs y form
 //Generar comprobaciones de mail y password
 //Generar salida onLogin
+import axios from "axios";
 import React, { useState } from "react";
-
-const LoginForm = ({ onLogin }) => {
+import "./LoginForm.css";
+function LoginForm({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
-  const handleSubmit = (e) => {
+  const [route, setRoute] = useState("/usuarios/usuarioLogin");
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await axios.post(`http://localhost:8080/api${route}`, {
+        email,
+        password,
+      });
+
+      if (response.status === 200) {
+        onLogin(response.data);
+        setMessage("Exito de sesión exitoso!");
+      } else {
+        setMessage("Login fallido.");
+      }
+    } catch (error) {
+      setMessage("Ocurrió un error durante el inicio de sesión", error);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h1>Bienvenido a Minga App</h1>
-        <h2>Ingrese sus datos de inicio de sesión</h2>
-        <label>
+    <form className="login-form" onSubmit={handleSubmit}>
+      <div className="login-div">
+        <h1>Ingrese sus datos de inicio de sesión</h1>
+        <label className="form-label" htmlFor="rol">
+          ¿Es colaborador?
+          <input
+            className="login-input"
+            id="rol"
+            type="checkbox"
+            onClick={() => setRoute("/colaborador/colaboradorLogin")}
+          />
+        </label>
+        <label className="form-label" htmlFor="useremail">
           Rut:
           <input
+            className="login-input"
+            id="useremail"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -27,12 +53,14 @@ const LoginForm = ({ onLogin }) => {
             pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
             title="Ingrese su correo electrónico"
             required
-          />{" "}
+          />
         </label>
         <br></br>
-        <label>
+        <label className="form-label" htmlFor="userpassword">
           Password:
           <input
+            className="login-input"
+            id="userpassword"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -42,9 +70,11 @@ const LoginForm = ({ onLogin }) => {
           />
         </label>
       </div>
-      <button type="submit">¡A minguear!</button>
-      {message && <p>{message}</p>}
+      <div className="login-div login-div-no-background">
+        <button type="submit">¡A minguear!</button>
+        {message && <h2>{message}</h2>}
+      </div>
     </form>
   );
-};
+}
 export default LoginForm;

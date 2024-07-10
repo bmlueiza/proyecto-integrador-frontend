@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
 
@@ -65,24 +66,46 @@ const RegisterUser = ({ onRegister }) => {
   const [password, setPassword] = useState("");
   const [confirmarPassword, setConfirmarPassword] = useState("");
   const [selectedComunas, setComunas] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmarPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
+
+    const data = {
+      rut,
+      nombre,
+      apellidoPaterno,
+      apellidoMaterno,
+      fechaNacimiento,
+      email,
+      celular,
+      password,
+      comunas: selectedComunas.map((comuna) => comuna.value),
+    };
+
+    console.log("Enviando datos:", data);
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/usuarios",
+        data
+      );
+      setMessage("Registro exitoso");
+      onRegister(response.data);
+    } catch (error) {
+      setMessage("Error en el registro");
     }
-    onRegister({ email, password });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className="user-register" onSubmit={handleSubmit}>
+      <div className="user-div">
         <h1>Bienvenido Minguero</h1>
         <h2>Ingrese sus datos para crear su usuario</h2>
-        <label>
+        <label className="user-label" htmlFor="rut">
           <p>Rut</p>
           <input
+            id="rut"
+            className="professional-input"
             type="text"
             value={rut}
             onChange={(e) => setRut(e.target.value)}
@@ -91,62 +114,74 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label>
+        <label htmlFor="nombre" className="user-label">
           <p>Nombre</p>
           <input
+            id="nombre"
+            className="professional-input"
             type="text"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Nombre"
-            pattern="[A-Za-z\s]"
+            pattern="[A-Za-z\s]+"
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" htmlFor="apellido-paterno">
           <p>Apellido Paterno</p>
           <input
+            id="apellido-paterno"
+            className="professional-input"
             type="text"
             value={apellidoPaterno}
             onChange={(e) => setApellidoPaterno(e.target.value)}
             placeholder="Apellido paterno"
-            pattern="[A-Za-z\s]"
+            pattern="[A-Za-z\s]+"
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" Htmlfor="apellido-materno">
           <p>Apellido materno</p>
           <input
+            id="apellido-materno"
+            className="professional-input"
             type="text"
             value={apellidoMaterno}
             onChange={(e) => setApellidoMaterno(e.target.value)}
             placeholder="Apellido materno"
-            pattern="[A-Za-z\s]"
+            pattern="[A-Za-z\s]+"
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" htmlFor="fecha-nacimiento">
           <p>Fecha de nacimiento</p>
           <input
+            id="fecha-nacimiento"
+            className="professional-input"
             type="date"
             value={fechaNacimiento}
             onChange={(e) => setFechaNacimiento(e.target.value)}
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" htmlFor="email">
           <p>Email</p>
           <input
+            id="email"
+            className="professional-input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ejemplo@minga.cl"
-            pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
+            // pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
             required
           />{" "}
         </label>
-        <label>
+        <label className="user-label" htmlForm="celular">
           <p>Celular</p>
           <input
+            id="celular"
+            className="professional-input"
             type="text"
             value={celular}
             onChange={(e) => setCelular(e.target.value)}
@@ -155,39 +190,47 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" htmlFor="password">
           <p>Contraseña</p>
           <input
+            id="password"
+            className="professional-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="********"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
+            //pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" id="confirm-password">
           <p>Confirmar contraseña</p>
           <input
+            id="confirm-password"
+            className="professional-input"
             type="password"
             value={confirmarPassword}
             onChange={(e) => setConfirmarPassword(e.target.value)}
             placeholder="********"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
+            //pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
             required
           ></input>
         </label>
-        <label>
+        <label className="user-label" htmlFor="comunas-select">
           <p>Seleccione las comunas donde trabajara</p>
           <Select
+            className="professional-select"
+            id="comunas-select"
             isMulti
             options={comunas}
             value={selectedComunas}
-            onChange={setComunas}
+            onChange={(selectedOptions) => setComunas(selectedOptions)}
             required
           />
         </label>
       </div>
+      <button type="submit">¡A minguear!</button>
+      {message && <h3>{message}</h3>}
     </form>
   );
 };
