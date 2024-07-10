@@ -1,57 +1,57 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
+import "./RegistroFormProfessional.css";
 //Generar salida onRegister
 
 //Se definen arrays para opciones de seleccion multiple por lista
 const comunas = [
   { value: "alhue", label: "Alhué" },
   { value: "buin", label: "Buin" },
-  { value: "calera_de_tango", label: "Calera de Tango" },
+  { value: "calera de tango", label: "Calera de Tango" },
   { value: "cerrillos", label: "Cerrillos" },
-  { value: "cerro_navia", label: "Cerro Navia" },
+  { value: "cerro navia", label: "Cerro Navia" },
   { value: "colina", label: "Colina" },
   { value: "conchali", label: "Conchalí" },
   { value: "curacavi", label: "Curacaví" },
-  { value: "el_bosque", label: "El Bosque" },
-  { value: "el_monte", label: "El Monte" },
-  { value: "estacion_central", label: "Estación Central" },
+  { value: "el bosque", label: "El Bosque" },
+  { value: "el monte", label: "El Monte" },
+  { value: "estacion central", label: "Estación Central" },
   { value: "huechuraba", label: "Huechuraba" },
   { value: "independencia", label: "Independencia" },
-  { value: "isla_de_maipo", label: "Isla de Maipo" },
-  { value: "la_cisterna", label: "La Cisterna" },
-  { value: "la_florida", label: "La Florida" },
-  { value: "la_granja", label: "La Granja" },
-  { value: "la_pintana", label: "La Pintana" },
-  { value: "la_reina", label: "La Reina" },
+  { value: "isla de maipo", label: "Isla de Maipo" },
+  { value: "la cisterna", label: "La Cisterna" },
+  { value: "la florida", label: "La Florida" },
+  { value: "la granja", label: "La Granja" },
+  { value: "la pintana", label: "La Pintana" },
+  { value: "la reina", label: "La Reina" },
   { value: "lampa", label: "Lampa" },
-  { value: "las_condes", label: "Las Condes" },
-  { value: "lo_barnechea", label: "Lo Barnechea" },
-  { value: "lo_espejo", label: "Lo Espejo" },
-  { value: "lo_prado", label: "Lo Prado" },
+  { value: "las condes", label: "Las Condes" },
+  { value: "lo barnechea", label: "Lo Barnechea" },
+  { value: "lo espejo", label: "Lo Espejo" },
+  { value: "lo prado", label: "Lo Prado" },
   { value: "macul", label: "Macul" },
   { value: "maipu", label: "Maipú" },
-  { value: "maria_pinto", label: "María Pinto" },
+  { value: "maria pinto", label: "María Pinto" },
   { value: "melipilla", label: "Melipilla" },
   { value: "nunoa", label: "Ñuñoa" },
-  { value: "padre_hurtado", label: "Padre Hurtado" },
+  { value: "padre hurtado", label: "Padre Hurtado" },
   { value: "paine", label: "Paine" },
-  { value: "pedro_aguirre_cerda", label: "Pedro Aguirre Cerda" },
+  { value: "pedro aguirre cerda", label: "Pedro Aguirre Cerda" },
   { value: "penalolen", label: "Peñalolén" },
   { value: "pirque", label: "Pirque" },
   { value: "providencia", label: "Providencia" },
   { value: "pudahuel", label: "Pudahuel" },
-  { value: "puente_alto", label: "Puente Alto" },
+  { value: "puente alto", label: "Puente Alto" },
   { value: "quilicura", label: "Quilicura" },
-  { value: "quinta_normal", label: "Quinta Normal" },
+  { value: "quinta normal", label: "Quinta Normal" },
   { value: "recoleta", label: "Recoleta" },
   { value: "renca", label: "Renca" },
-  { value: "san_bernardo", label: "San Bernardo" },
-  { value: "san_jose_de_maipo", label: "San José de Maipo" },
-  { value: "san_joaquin", label: "San Joaquín" },
-  { value: "san_miguel", label: "San Miguel" },
-  { value: "san_pedro", label: "San Pedro" },
-  { value: "sanfelipe", label: "San Felipe" },
+  { value: "san bernardo", label: "San Bernardo" },
+  { value: "san jose de maipo", label: "San José de Maipo" },
+  { value: "san joaquin", label: "San Joaquín" },
+  { value: "san miguel", label: "San Miguel" },
+  { value: "san pedro", label: "San Pedro" },
   { value: "santiago", label: "Santiago" },
   { value: "tiltil", label: "Tiltil" },
   { value: "vitacura", label: "Vitacura" },
@@ -113,14 +113,15 @@ const RegisterProfessional = ({ onRegister }) => {
   };
 
   return (
-    <form className="professional-register" onSubmit={handleSubmit}>
-      <div className="professional-div">
-        <h1>Bienvenido Minguero</h1>
-        <h2>Ingrese sus datos para crear su usuario</h2>
-        <label className="professional-label" htmlFor="rut">
+    <form className="professional__register" onSubmit={handleSubmit}>
+      <h1 className="hedding__register__profesional">
+        Ingrese sus datos para crear su usuario
+      </h1>
+      <div className="professional__div">
+        <label className="professional__label" htmlFor="rut">
           <p>Rut</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="rut"
             type="text"
             value={rut}
@@ -130,10 +131,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="nombre">
+        <label className="professional__label" htmlFor="nombre">
           <p>Nombre</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="nombre"
             type="text"
             value={nombre}
@@ -143,10 +144,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="apellido-paterno">
+        <label className="professional__label" htmlFor="apellido-paterno">
           <p>Apellido Paterno</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="apellido-paterno"
             type="text"
             value={apellidoPaterno}
@@ -156,10 +157,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="apellido-materno">
+        <label className="professional__label" htmlFor="apellido-materno">
           <p>Apellido materno</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="apellido-materno"
             type="text"
             value={apellidoMaterno}
@@ -169,10 +170,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="fecha-nacimiento">
+        <label className="professional__label" htmlFor="fecha-nacimiento">
           <p>Fecha de nacimiento</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="fecha-nacimiento"
             type="date"
             value={fechaNacimiento}
@@ -180,10 +181,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="email">
+        <label className="professional__label" htmlFor="email">
           <p>Email</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="email"
             type="email"
             value={email}
@@ -193,10 +194,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           />
         </label>
-        <label className="professional-label" htmlFor="celular">
+        <label className="professional__label" htmlFor="celular">
           <p>Celular</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="celular"
             type="text"
             value={celular}
@@ -206,10 +207,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="password">
+        <label className="professional__label" htmlFor="password">
           <p>Contraseña</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="password"
             type="password"
             value={password}
@@ -219,10 +220,10 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="professional-label" htmlFor="confirm-password">
+        <label className="professional__label" htmlFor="confirm-password">
           <p>Confirmar contraseña</p>
           <input
-            className="professional-input"
+            className="professional__input"
             id="confirm-password"
             type="password"
             value={confirmarPassword}
@@ -231,12 +232,15 @@ const RegisterProfessional = ({ onRegister }) => {
             //pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
             required
           ></input>
-        </label>
-        <label className="professional-label" htmlFor="comunas-select">
+        </label>{" "}
+      </div>
+      <hr className="divider" />
+      <div className="professional__div__select">
+        <label className="professional__select" htmlFor="comunas-select">
           <p>Seleccione las comunas donde trabajará</p>
           <Select
             id="comunas-select"
-            className="professional-select"
+            className="professional__select__input"
             isMulti
             options={comunas}
             value={selectedComunas}
@@ -244,21 +248,20 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           />
         </label>
-        <label className="professional-label" htmlFor="categorias-select">
+        <label className="professional__select" htmlFor="categorias-select">
           <p>Seleccione las categorías de sus servicios</p>
           <Select
             id="categorias-select"
-            className="professional-select"
+            className="professional__select__input"
             isMulti
             options={categorias}
             value={selectedCategorias}
             onChange={(selectedOptions) => setCategorias(selectedOptions)}
-            required
           />
         </label>
+        <button type="submit">¡A minguear!</button>
       </div>
-      <button type="submit">¡A minguear!</button>
-      {message && <h3>{message}</h3>}
+      {message && <h2 className="hedding__register__profesional">{message}</h2>}
     </form>
   );
 };
