@@ -26,7 +26,7 @@ export default function BasicMenu() {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
-        className="prueba"
+        className="user-menu"
       >
         <AccountCircleIcon className="menu-icon" fontSize="large" />
       </Button>
