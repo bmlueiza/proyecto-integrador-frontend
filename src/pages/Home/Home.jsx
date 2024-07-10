@@ -7,6 +7,7 @@ import {
   FaTree,
 } from "react-icons/fa";
 import { GiHandSaw } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
@@ -19,41 +20,41 @@ function Home() {
         <h3 className="title_category">¿Qué servicio necesita?</h3>
         <hr className="divider" />
         <div className="offered_categories">
-          <div className="offered_category">
+          <Link to="/categoria/electricidad" className="offered_category">
             <FaBolt size={40} className="icon" />
             <div className="underline"></div>
             <h4>Electricidad</h4>
-          </div>
-          <div className="offered_category">
+          </Link>
+          <Link to="/categoria/gasfiteria" className="offered_category">
             <FaWrench size={40} className="icon" />
             <div className="underline"></div>
             <h4>Gasfitería</h4>
-          </div>
-          <div className="offered_category">
+          </Link>
+          <Link to="/categoria/construccion" className="offered_category">
             <FaHammer size={40} className="icon" />
             <div className="underline"></div>
             <h4>Construcción</h4>
-          </div>
-          <div className="offered_category">
+          </Link>
+          <Link to="/categoria/carpinteria" className="offered_category">
             <GiHandSaw size={40} className="icon" />
             <div className="underline"></div>
             <h4>Carpintería</h4>
-          </div>
-          <div className="offered_category">
+          </Link>
+          <Link to="/categoria/albanileria" className="offered_category">
             <FaHammer size={40} className="icon" />
             <div className="underline"></div>
             <h4>Albañilería</h4>
-          </div>
-          <div className="offered_category">
+          </Link>
+          <Link to="/categoria/pintura" className="offered_category">
             <FaPaintRoller size={40} className="icon" />
             <div className="underline"></div>
             <h4>Pintura</h4>
-          </div>
-          <div className="offered_category">
+          </Link>
+          <Link to="/categoria/jardineria" className="offered_category">
             <FaTree size={40} className="icon" />
             <div className="underline"></div>
             <h4>Jardinería</h4>
-          </div>
+          </Link>
         </div>
       </div>
     </>
