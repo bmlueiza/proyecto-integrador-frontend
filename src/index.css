@@ -9,12 +9,13 @@
   --color_in_case: rgb(102, 63, 156);
 }
 * {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
-  margin: 0;
-  padding: 0;
   background-color: var(--color_background);
 }
 
