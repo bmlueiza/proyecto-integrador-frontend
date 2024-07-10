@@ -53,6 +53,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar({ className }) {
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSearch = () => {
+    // ACA LOGICA DE LA BUSQUEDA, LLAMADA A LA API, ETC
+    console.log("Searching for:", searchTerm);
+  };
+
   return (
     <Box className={`search-bar ${className}`}>
       <Search>
@@ -62,8 +72,16 @@ export default function SearchAppBar({ className }) {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
+          value={searchTerm}
+          onChange={handleInputChange}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              handleSearch();
+            }
+          }}
         />
       </Search>
+      {/* a */}
     </Box>
   );
 }
