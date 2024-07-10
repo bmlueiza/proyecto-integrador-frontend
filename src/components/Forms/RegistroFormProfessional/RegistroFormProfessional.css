@@ -1,0 +1,61 @@
+.professional__register {
+  margin: 15px;
+  padding: 0;
+  width: 99%;
+  max-width: 100vw;
+  background-color: var(--color_background);
+}
+
+.hedding__register__profesional {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 0px;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.professional__div {
+  display: grid;
+  grid-template-columns: 30vw 30vw 30vw;
+  background-color: var(--color_card_background);
+  margin: 15px;
+  border-radius: 4px;
+  padding-block-end: 1vw;
+}
+
+.divider {
+  border-top: 2px solid var(--color_text);
+  margin: 0 10%;
+  margin-bottom: 20px;
+}
+
+.professional__div > label {
+  text-align: center;
+  padding: 0;
+}
+
+.professional__div__select {
+  display: grid;
+  grid-template-columns: 45vw 45vw;
+  background-color: var(--color_card_background);
+  margin: 15px;
+  border-radius: 4px;
+  padding-block-end: 1vw;
+}
+
+.profesional__label {
+  margin: 5px;
+}
+
+.professional__select {
+  padding: 5px;
+  margin: 5px;
+}
+
+.professional__input {
+  cursor: text;
+  border-radius: 5px;
+  border-color: var(--color_card_background);
+}

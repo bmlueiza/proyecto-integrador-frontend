@@ -1,5 +1,3 @@
-//Generar comprobaciones de mail y password
-//Generar salida onLogin
 import axios from "axios";
 import React, { useState } from "react";
 import "./LoginForm.css";
@@ -30,19 +28,10 @@ function LoginForm({ onLogin }) {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
+      <h1 className="title-header">Ingrese sus datos de inicio de sesión</h1>
       <div className="login-div">
-        <h1>Ingrese sus datos de inicio de sesión</h1>
-        <label className="form-label" htmlFor="rol">
-          ¿Es colaborador?
-          <input
-            className="login-input"
-            id="rol"
-            type="checkbox"
-            onClick={() => setRoute("/colaborador/colaboradorLogin")}
-          />
-        </label>
         <label className="form-label" htmlFor="useremail">
-          Rut:
+          Correo electrónico:
           <input
             className="login-input"
             id="useremail"
@@ -55,7 +44,6 @@ function LoginForm({ onLogin }) {
             required
           />
         </label>
-        <br></br>
         <label className="form-label" htmlFor="userpassword">
           Password:
           <input
@@ -67,6 +55,15 @@ function LoginForm({ onLogin }) {
             placeholder="**********"
             title="Ingrese su constraseña"
             required
+          />
+        </label>
+        <label className="form-label" htmlFor="rol">
+          ¿Es colaborador?
+          <input
+            className="login-input"
+            id="rol"
+            type="checkbox"
+            onClick={() => setRoute("/colaborador/colaboradorLogin")}
           />
         </label>
       </div>

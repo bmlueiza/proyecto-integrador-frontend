@@ -1,54 +1,55 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
+import "./RegistroFormUser.css";
 
 const comunas = [
   { value: "alhue", label: "Alhué" },
   { value: "buin", label: "Buin" },
-  { value: "calera_de_tango", label: "Calera de Tango" },
+  { value: "calera+de+tango", label: "Calera de Tango" },
   { value: "cerrillos", label: "Cerrillos" },
-  { value: "cerro_navia", label: "Cerro Navia" },
+  { value: "cerro+navia", label: "Cerro Navia" },
   { value: "colina", label: "Colina" },
   { value: "conchali", label: "Conchalí" },
   { value: "curacavi", label: "Curacaví" },
-  { value: "el_bosque", label: "El Bosque" },
-  { value: "el_monte", label: "El Monte" },
+  { value: "el+bosque", label: "El Bosque" },
+  { value: "el+monte", label: "El Monte" },
   { value: "estacion_central", label: "Estación Central" },
   { value: "huechuraba", label: "Huechuraba" },
   { value: "independencia", label: "Independencia" },
-  { value: "isla_de_maipo", label: "Isla de Maipo" },
-  { value: "la_cisterna", label: "La Cisterna" },
-  { value: "la_florida", label: "La Florida" },
-  { value: "la_granja", label: "La Granja" },
-  { value: "la_pintana", label: "La Pintana" },
-  { value: "la_reina", label: "La Reina" },
+  { value: "isla+de+maipo", label: "Isla de Maipo" },
+  { value: "la+cisterna", label: "La Cisterna" },
+  { value: "la+florida", label: "La Florida" },
+  { value: "la+granja", label: "La Granja" },
+  { value: "la+pintana", label: "La Pintana" },
+  { value: "la+reina", label: "La Reina" },
   { value: "lampa", label: "Lampa" },
-  { value: "las_condes", label: "Las Condes" },
-  { value: "lo_barnechea", label: "Lo Barnechea" },
-  { value: "lo_espejo", label: "Lo Espejo" },
-  { value: "lo_prado", label: "Lo Prado" },
+  { value: "las+condes", label: "Las Condes" },
+  { value: "lo+barnechea", label: "Lo Barnechea" },
+  { value: "lo+espejo", label: "Lo Espejo" },
+  { value: "lo+prado", label: "Lo Prado" },
   { value: "macul", label: "Macul" },
   { value: "maipu", label: "Maipú" },
-  { value: "maria_pinto", label: "María Pinto" },
+  { value: "maria+pinto", label: "María Pinto" },
   { value: "melipilla", label: "Melipilla" },
   { value: "nunoa", label: "Ñuñoa" },
-  { value: "padre_hurtado", label: "Padre Hurtado" },
+  { value: "padre+hurtado", label: "Padre Hurtado" },
   { value: "paine", label: "Paine" },
-  { value: "pedro_aguirre_cerda", label: "Pedro Aguirre Cerda" },
+  { value: "pedro+aguirre+cerda", label: "Pedro Aguirre Cerda" },
   { value: "penalolen", label: "Peñalolén" },
   { value: "pirque", label: "Pirque" },
   { value: "providencia", label: "Providencia" },
   { value: "pudahuel", label: "Pudahuel" },
-  { value: "puente_alto", label: "Puente Alto" },
+  { value: "puente+alto", label: "Puente Alto" },
   { value: "quilicura", label: "Quilicura" },
-  { value: "quinta_normal", label: "Quinta Normal" },
+  { value: "quinta+normal", label: "Quinta Normal" },
   { value: "recoleta", label: "Recoleta" },
   { value: "renca", label: "Renca" },
-  { value: "san_bernardo", label: "San Bernardo" },
-  { value: "san_jose_de_maipo", label: "San José de Maipo" },
-  { value: "san_joaquin", label: "San Joaquín" },
-  { value: "san_miguel", label: "San Miguel" },
-  { value: "san_pedro", label: "San Pedro" },
+  { value: "san+bernardo", label: "San Bernardo" },
+  { value: "san+jose+de+maipo", label: "San José de Maipo" },
+  { value: "san+joaquin", label: "San Joaquín" },
+  { value: "san+miguel", label: "San Miguel" },
+  { value: "san+pedro", label: "San Pedro" },
   { value: "sanfelipe", label: "San Felipe" },
   { value: "santiago", label: "Santiago" },
   { value: "tiltil", label: "Tiltil" },
@@ -97,15 +98,16 @@ const RegisterUser = ({ onRegister }) => {
   };
 
   return (
-    <form className="user-register" onSubmit={handleSubmit}>
-      <div className="user-div">
-        <h1>Bienvenido Minguero</h1>
-        <h2>Ingrese sus datos para crear su usuario</h2>
-        <label className="user-label" htmlFor="rut">
+    <form className="user__register" onSubmit={handleSubmit}>
+      <h1 className="hedding__register__user">
+        Ingrese sus datos para crear su usuario
+      </h1>
+      <div className="user__div">
+        <label className="user__label" htmlFor="rut">
           <p>Rut</p>
           <input
             id="rut"
-            className="professional-input"
+            className="user__input"
             type="text"
             value={rut}
             onChange={(e) => setRut(e.target.value)}
@@ -114,11 +116,11 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label htmlFor="nombre" className="user-label">
+        <label htmlFor="nombre" className="user__label">
           <p>Nombre</p>
           <input
             id="nombre"
-            className="professional-input"
+            className="user__input"
             type="text"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
@@ -127,11 +129,11 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user-label" htmlFor="apellido-paterno">
+        <label className="user__label" htmlFor="apellido-paterno">
           <p>Apellido Paterno</p>
           <input
             id="apellido-paterno"
-            className="professional-input"
+            className="user__input"
             type="text"
             value={apellidoPaterno}
             onChange={(e) => setApellidoPaterno(e.target.value)}
@@ -140,11 +142,11 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user-label" Htmlfor="apellido-materno">
+        <label className="user__label" Htmlfor="apellido-materno">
           <p>Apellido materno</p>
           <input
             id="apellido-materno"
-            className="professional-input"
+            className="user__input"
             type="text"
             value={apellidoMaterno}
             onChange={(e) => setApellidoMaterno(e.target.value)}
@@ -153,22 +155,22 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user-label" htmlFor="fecha-nacimiento">
+        <label className="user__label" htmlFor="fecha-nacimiento">
           <p>Fecha de nacimiento</p>
           <input
             id="fecha-nacimiento"
-            className="professional-input"
+            className="user__input"
             type="date"
             value={fechaNacimiento}
             onChange={(e) => setFechaNacimiento(e.target.value)}
             required
           ></input>
         </label>
-        <label className="user-label" htmlFor="email">
+        <label className="user__label" htmlFor="email">
           <p>Email</p>
           <input
             id="email"
-            className="professional-input"
+            className="user__input"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -177,11 +179,11 @@ const RegisterUser = ({ onRegister }) => {
             required
           />{" "}
         </label>
-        <label className="user-label" htmlForm="celular">
+        <label className="user__label" htmlFor="celular">
           <p>Celular</p>
           <input
             id="celular"
-            className="professional-input"
+            className="user__input"
             type="text"
             value={celular}
             onChange={(e) => setCelular(e.target.value)}
@@ -190,11 +192,11 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user-label" htmlFor="password">
+        <label className="user__label" htmlFor="password">
           <p>Contraseña</p>
           <input
             id="password"
-            className="professional-input"
+            className="user__input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -203,11 +205,11 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user-label" id="confirm-password">
+        <label className="user__label" id="confirm-password">
           <p>Confirmar contraseña</p>
           <input
             id="confirm-password"
-            className="professional-input"
+            className="user__input"
             type="password"
             value={confirmarPassword}
             onChange={(e) => setConfirmarPassword(e.target.value)}
@@ -216,12 +218,17 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user-label" htmlFor="comunas-select">
-          <p>Seleccione las comunas donde trabajara</p>
+      </div>
+      <hr className="divider" />
+      <div className="user__div__select">
+        <label
+          className="user__label user__select__label"
+          htmlFor="comunas-select"
+        >
+          <p>Seleccione la comuna de su domicilio</p>
           <Select
-            className="professional-select"
-            id="comunas-select"
-            isMulti
+            className="user__select_input"
+            id="comunas__select"
             options={comunas}
             value={selectedComunas}
             onChange={(selectedOptions) => setComunas(selectedOptions)}
@@ -230,7 +237,7 @@ const RegisterUser = ({ onRegister }) => {
         </label>
       </div>
       <button type="submit">¡A minguear!</button>
-      {message && <h3>{message}</h3>}
+      {message && <h2 className="hedding__register__user">{message}</h2>}
     </form>
   );
 };
