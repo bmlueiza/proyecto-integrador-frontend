@@ -28,7 +28,7 @@ export default function BasicMenu() {
         onClick={handleClick}
         className="prueba"
       >
-        <AccountCircleIcon />
+        <AccountCircleIcon className="menu-icon" fontSize="large" />
       </Button>
       <Menu
         id="basic-menu"

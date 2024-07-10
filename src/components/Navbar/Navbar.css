@@ -1,3 +1,11 @@
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: white;
+  
+} */
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -8,6 +16,19 @@
 .nav .nav-items {
   flex-grow: 1;
 }
+
+.underline-nav {
+  width: 0px;
+  height: 2px;
+  background-color: var(--color_card_background);
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-items ul li:hover .underline-nav {
+  width: 100%;
+  background-color: var(--color_text);
+}
+
 .nav .nav-logo img {
   /* position: absolute; */
   /* left: 1px; */

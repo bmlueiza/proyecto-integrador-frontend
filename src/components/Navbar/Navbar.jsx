@@ -8,7 +8,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Navbar() {
   return (
-    <div>
+    <div className="nav-main">
       <nav className="nav">
         <div className="nav-logo">
           <a href="">
@@ -19,13 +19,17 @@ function Navbar() {
         <div className="nav-items">
           <ul>
             <li>
-              <a href="#">Minga</a>
+              <a href="/">Minga</a>
+              <div className="underline-nav"></div>
+            </li>
+
+            <li>
+              <a href="/">Mensajes</a>
+              <div className="underline-nav"></div>
             </li>
             <li>
-              <a href="#">Categorias</a>
-            </li>
-            <li>
-              <a href="#">Mensajes</a>
+              <a href="/nosotros">Nosotros</a>
+              <div className="underline-nav"></div>
             </li>
             <SearchAppBar className="searchbar" />
             {/* <li className="menu">
