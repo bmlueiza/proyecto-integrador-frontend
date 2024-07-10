@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
+//Generar salida onRegister
 
 //Se definen arrays para opciones de seleccion multiple por lista
 const comunas = [
@@ -77,25 +79,49 @@ const RegisterProfessional = ({ onRegister }) => {
   const [confirmarPassword, setConfirmarPassword] = useState("");
   const [selectedComunas, setComunas] = useState([]);
   const [selectedCategorias, setCategorias] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmarPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
+
     // Llama a la función onRegister con los datos del formulario
-    onRegister({ email, password });
+    const data = {
+      rut,
+      nombre,
+      apellidoPaterno,
+      apellidoMaterno,
+      fechaNacimiento,
+      email,
+      celular,
+      password,
+      comunas: selectedComunas.map((comuna) => comuna.value),
+      categorias: selectedCategorias.map((categoria) => categoria.value),
+    };
+
+    console.log("Enviando datos:", data);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/colaborador",
+        data
+      );
+      setMessage("Registro exitoso");
+      onRegister(response.data);
+    } catch (error) {
+      setMessage("Error en el registro");
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className="professional-register" onSubmit={handleSubmit}>
+      <div className="professional-div">
         <h1>Bienvenido Minguero</h1>
         <h2>Ingrese sus datos para crear su usuario</h2>
-        <label>
+        <label className="professional-label" htmlFor="rut">
           <p>Rut</p>
           <input
+            className="professional-input"
+            id="rut"
             type="text"
             value={rut}
             onChange={(e) => setRut(e.target.value)}
@@ -104,62 +130,74 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="nombre">
           <p>Nombre</p>
           <input
+            className="professional-input"
+            id="nombre"
             type="text"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Nombre"
-            pattern="[A-Za-z\s]"
+            pattern="[A-Za-z\s]+"
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="apellido-paterno">
           <p>Apellido Paterno</p>
           <input
+            className="professional-input"
+            id="apellido-paterno"
             type="text"
             value={apellidoPaterno}
             onChange={(e) => setApellidoPaterno(e.target.value)}
             placeholder="Apellido paterno"
-            pattern="[A-Za-z\s]"
+            pattern="[A-Za-z\s]+"
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="apellido-materno">
           <p>Apellido materno</p>
           <input
+            className="professional-input"
+            id="apellido-materno"
             type="text"
             value={apellidoMaterno}
             onChange={(e) => setApellidoMaterno(e.target.value)}
             placeholder="Apellido materno"
-            pattern="[A-Za-z\s]"
+            pattern="[A-Za-z\s]+"
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="fecha-nacimiento">
           <p>Fecha de nacimiento</p>
           <input
+            className="professional-input"
+            id="fecha-nacimiento"
             type="date"
             value={fechaNacimiento}
             onChange={(e) => setFechaNacimiento(e.target.value)}
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="email">
           <p>Email</p>
           <input
+            className="professional-input"
+            id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ejemplo@minga.cl"
-            pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
+            //pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
             required
-          />{" "}
+          />
         </label>
-        <label>
+        <label className="professional-label" htmlFor="celular">
           <p>Celular</p>
           <input
+            className="professional-input"
+            id="celular"
             type="text"
             value={celular}
             onChange={(e) => setCelular(e.target.value)}
@@ -168,50 +206,59 @@ const RegisterProfessional = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="password">
           <p>Contraseña</p>
           <input
+            className="professional-input"
+            id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="********"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
+            //pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
             required
           ></input>
         </label>
-        <label>
+        <label className="professional-label" htmlFor="confirm-password">
           <p>Confirmar contraseña</p>
           <input
+            className="professional-input"
+            id="confirm-password"
             type="password"
             value={confirmarPassword}
             onChange={(e) => setConfirmarPassword(e.target.value)}
             placeholder="********"
-            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
+            //pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.,:;])[A-Za-z\d@$!%*?&]+$"
             required
           ></input>
         </label>
-        <label>
-          <p>Seleccione las comunas donde trabajara</p>
+        <label className="professional-label" htmlFor="comunas-select">
+          <p>Seleccione las comunas donde trabajará</p>
           <Select
+            id="comunas-select"
+            className="professional-select"
             isMulti
             options={comunas}
             value={selectedComunas}
-            onChange={setComunas}
+            onChange={(selectedOptions) => setComunas(selectedOptions)}
             required
           />
         </label>
-        <label>
-          <p>Seleccione las categorias de sus servicios</p>
+        <label className="professional-label" htmlFor="categorias-select">
+          <p>Seleccione las categorías de sus servicios</p>
           <Select
+            id="categorias-select"
+            className="professional-select"
             isMulti
             options={categorias}
             value={selectedCategorias}
-            onChange={setCategorias}
+            onChange={(selectedOptions) => setCategorias(selectedOptions)}
             required
           />
         </label>
       </div>
-      <button type="submit">A minguear!</button>
+      <button type="submit">¡A minguear!</button>
+      {message && <h3>{message}</h3>}
     </form>
   );
 };
