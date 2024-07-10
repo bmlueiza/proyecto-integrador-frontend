@@ -38,6 +38,7 @@ function Navbar() {
         <BasicMenu className="prueba" />
       </nav>
     </div>
+    /* hola */
   );
 }
 
