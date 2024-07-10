@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.png";
@@ -7,8 +7,22 @@ import BasicMenu from "../SimpleMenu/SimpleMenu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Navbar() {
+  const [isClicked, setIsClicked] = useState(false);
+
+  const toggleHide = () => {
+    setIsClicked(!isClicked);
+  };
+  const toggleNav = () => {
+    setIsClicked(!isClicked);
+  };
+
+  const handleClick = () => {
+    toggleHide();
+    toggleNav();
+  };
+
   return (
-    <div className="nav-main">
+    <div>
       <nav className="nav">
         <div className="nav-logo">
           <a href="">
@@ -16,7 +30,7 @@ function Navbar() {
           </a>
         </div>
 
-        <div className="nav-items">
+        <div className={`nav-items ${isClicked ? "hidden" : ""}`}>
           <ul>
             <li>
               <a href="/">Minga</a>
@@ -32,16 +46,17 @@ function Navbar() {
               <div className="underline-nav"></div>
             </li>
             <SearchAppBar className="searchbar" />
-            {/* <li className="menu">
-              <a href="#">
-                <MenuIcon />
-              </a>
-            </li> */}
           </ul>
         </div>
-        <BasicMenu className="prueba" />
+        <div className={`div-menu ${isClicked ? "hidden" : ""}`}>
+          <BasicMenu className="user-menu" />
+        </div>
+        <div className="menu-icon-resp" onClick={handleClick}>
+          <MenuIcon fontSize="large" className={isClicked ? "hide" : ""} />
+        </div>
       </nav>
     </div>
+
     /* hola */
   );
 }
