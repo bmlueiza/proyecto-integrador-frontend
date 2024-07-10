@@ -27,8 +27,8 @@ function App() {
           path="/registro-colaborador"
           element={<RegistroProfessional />}
         />
+        <Route path="/evaluacion/:id" element={<Evaluacion />} />
       </Routes>
-      <Route path="/evaluacion/:id" element={<Evaluacion />} />
       <Footer />
     </>
   );
