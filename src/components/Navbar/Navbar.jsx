@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../assets/logo.png";
 import SearchAppBar from "../SearchBar/SearchBar";
@@ -33,16 +34,22 @@ function Navbar() {
         <div className={`nav-items ${isClicked ? "hidden" : ""}`}>
           <ul>
             <li>
-              <a href="/">Minga</a>
+              <Link to="/" className="nav-link">
+                Minga
+              </Link>
               <div className="underline-nav"></div>
             </li>
 
             <li>
-              <a href="/">Mensajes</a>
+              <Link to="/" className="nav-link">
+                Mensajes
+              </Link>
               <div className="underline-nav"></div>
             </li>
             <li>
-              <a href="/nosotros">Nosotros</a>
+              <Link to="/Nosotros" className="nav-link">
+                Nosotros
+              </Link>
               <div className="underline-nav"></div>
             </li>
             <SearchAppBar className="searchbar" />

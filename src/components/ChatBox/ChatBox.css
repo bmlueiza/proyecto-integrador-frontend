@@ -4,7 +4,7 @@
   text-align: left;
 }
 
-.contenedor {
+.contenedor2 {
   width: 800px;
   height: auto;
   padding: 50px 50px 100px 100px; /* Espacio interno de cada div */
@@ -14,43 +14,47 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-form {
+.contact_form2 {
   padding: 50px 50px 50px 50px;
 }
 
-input {
+.contact_input2 {
+  width: 400px;
   border: none;
   border-radius: 20px;
-  padding: 15px 120px;
+  padding: 15px 20px;
   margin: 5px 50px 20px 50px;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 20px;
 }
 
-textarea {
+.contact_textarea2 {
+  width: 400px;
   border-radius: 20px;
   border: none; /* Eliminar borde */
-  padding: 30px;
-  margin: 10px 50px 50px 50px;
+  padding: 10px;
+  margin: 5px 50px 30px 50px;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 20px;
 }
 
-input[type="submit"] {
+.contact_input2[type="submit"] {
   background-color: var(--color_heading_button);
   color: var(--color_text_button);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 30px;
-  padding: 10px 100px; /* Espacio interno del botón */
+  font-size: 23px;
+  font-weight: 600;
+  width: 300px;
+  padding: 10px; /* Espacio interno del botón */
   border: none; /* Eliminar borde */
   border-radius: 20px; /* Bordes redondeados */
   cursor: pointer; /* Cambiar el cursor al pasar por encima */
   display: flex;
-  margin: 0 auto;
+  margin: 1px 50px 10px 50px;
 }
 
-label {
+.contact_label2 {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: var(--color_text);
   font-size: 20px;
@@ -58,38 +62,38 @@ label {
   margin: 5px 50px 5px 50px;
 }
 
-h2 {
+.title_contact2 {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: 55px;
 }
 
 @media (max-width: 768px) {
-  .contenedor {
+  .contenedor2 {
     width: 90%;
     padding: 30px;
   }
-  form {
+  .contact_form2 {
     padding: 30px;
     width: 100%;
   }
 
-  input,
-  textarea {
+  .contact_input2,
+  .contact_textarea2 {
     padding: 10px;
     margin: 5px 30px 15px 30px;
   }
 
-  input[type="submit"] {
-    font-size: 24px;
+  .contact_input2[type="submit"] {
+    font-size: 22px;
     padding: 10px 50px;
   }
 
-  label {
-    font-size: 16px;
+  .contact_label2 {
+    font-size: 20px;
     margin: 5px 30px 5px 30px;
   }
 
-  h2 {
+  .title_contact2 {
     font-size: 40px;
   }
 }

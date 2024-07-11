@@ -5,6 +5,7 @@
   --color_text: rgb(255, 255, 255);
   --color_text_button: rgb(0, 0, 0);
   --color_card_background: rgba(255, 255, 255, 0.1);
+  --color_success: rgb(255, 255, 255, 0.7);
   --color_error: rgb(255, 44, 44);
   --color_in_case: rgb(102, 63, 156);
 }
