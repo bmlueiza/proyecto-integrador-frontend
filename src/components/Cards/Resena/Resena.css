@@ -1,0 +1,28 @@
+.resena {
+    display: flex;
+    max-width: 500px;
+    min-width: 300px;
+    background-color: var(--color_card_background);
+    gap: 10px;
+    border-radius: 4px;
+    padding: 10px;
+  }
+  .resena_data {
+    display: flex;
+    flex-direction: column;
+  }
+  .resena_valoracion_date {
+    display: flex;
+    justify-content: space-between;
+  }
+  .resena_fecha {
+    color: var(--color_text);
+  }
+  .resena_comuna {
+    margin-bottom: 10px;
+    color: var(--color_success);
+  }
+  .weight_bold {
+    font-weight: bold;
+  }
+  

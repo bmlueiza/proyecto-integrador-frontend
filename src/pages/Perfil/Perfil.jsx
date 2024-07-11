@@ -1,73 +1,88 @@
+import { FaStar, FaRegStar } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import ResultadoCategoria from "../../components/Cards/ResultadoCategoria/ResultadoCategoria";
+import Button from "../../components/Button/Button";
+import Resena from "../../components/Cards/Resena/Resena";
+import "./Perfil.css";
 
 const client = axios.create({
   baseURL: "http://localhost:8080/api/colaborador",
 });
-function Perfil() {
-  const [contador, setContador] = useState(1);
-  const [colaborador, setColaborador] = useState(null);
-  useEffect(() => {
-    client.get(`/${contador}`).then((response) => {
-      setColaborador(response.data);
-    });
-  }, [contador]);
-  /* {
-    "id": 1,
-    "rut": "12345678-9",
-    "nombre": "Pedro",
-    "apellidoPaterno": "Gómez",
-    "apellidoMaterno": "López",
-    "fechaNacimiento": "1985-02-15T00:00:00.000+00:00",
-    "email": "pedro.gomez@example.com",
-    "celular": "+56912345678",
-    "password": "password123",
-    "disponibilidad": 1,
-    "puntuacion": 85,
-    "mensajes": [],
-    "resenas": [],
-    "categorias": [],
-    "comunas": []
-} */
-  const formateDate = (date) => {
-    const moonLanding = new Date(date);
 
-    return (
-      moonLanding.getDate() +
-      "-" +
-      moonLanding.getMonth() +
-      "-" +
-      moonLanding.getFullYear()
-    );
+const clientResena = axios.create({
+  baseURL: "http://localhost:8080/api/resenas/colaborador",
+});
+
+function Perfil() {
+  const { id } = useParams(); // obtener el id del colaborador desde la URL
+  const [colaborador, setColaborador] = useState(null);
+  const [resenas, setResenas] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      client
+        .get(`/${id}`)
+        .then((response) => {
+          setColaborador(response.data);
+        })
+        .catch((error) => {
+          console.error("Error buscando al colaborador:", error);
+        });
+    }
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      clientResena
+        .get(`/${id}`)
+        .then((response) => {
+          setResenas(response.data);
+        })
+        .catch((error) => {
+          console.error("Error buscando las reseñas:", error);
+        });
+    }
+  }, [id]);
+
+  if (!colaborador) {
+    return <></>;
+  }
+
+  const handleContactClick = () => {
+    setIsModalOpen(true);
+    console.log("Contactar a", colaborador.nombre);
   };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    console.log("Cerrar modal");
+  };
+
+  const imagen = `https://ui-avatars.com/api/?name=${colaborador.nombre}+${colaborador.apellidoPaterno}&background=random&color=fff`;
+
   return (
-    <>
-      <div className="container_datos">
-        <div className="container">
-          <div className="datos">
-            <h1>{colaborador && colaborador.nombre}</h1>
-            <h2>{colaborador && colaborador.apellidoPaterno}</h2>
-            <h2>{colaborador && colaborador.email}</h2>
-            <h2>
-              {colaborador && colaborador.disponibilidad
-                ? "Disponibilidad: ✓"
-                : "Disponibilidad:✗"}
-            </h2>
-            <h2>{colaborador && formateDate(colaborador.fechaNacimiento)}</h2>
-          </div>
-          <div className="botones">
-            <button
-              className="btn btn_text"
-              onClick={() => setContador(contador + 1)}
-            >
-              {contador}
-            </button>
-            <button className="btn btn_text">Editar</button>
-            <button className="btn btn_text">Eliminar</button>
-          </div>
-        </div>
+    <main className="perfil">
+      <div className="perfil_header">
+        <ResultadoCategoria professional={colaborador} />
+        <Button
+          text="Contactar"
+          onClick={handleContactClick}
+          className="btn_big"
+        />
       </div>
-    </>
+      <hr className="divider_perfil" />
+      <h1>Valoraciones</h1>
+      <div className="resenas">
+        {resenas.length === 0 ? (
+          <p>No hay valoraciones para este colaborador.</p>
+        ) : (
+          resenas.map((resena) => <Resena key={resena.id} resena={resena} />)
+        )}
+      </div>
+    </main>
   );
 }
 
