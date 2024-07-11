@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
 import "./RegistroFormProfessional.css";
+import Button from "../../Button/Button";
 //Generar salida onRegister
 
 //Se definen arrays para opciones de seleccion multiple por lista
@@ -259,8 +260,13 @@ const RegisterProfessional = ({ onRegister }) => {
             onChange={(selectedOptions) => setCategorias(selectedOptions)}
           />
         </label>
-        <button type="submit">¡A minguear!</button>
       </div>
+      <Button
+        type="submit"
+        text="A mingear!"
+        className="button__text"
+        onClick={handleSubmit}
+      />
       {message && <h2 className="hedding__register__profesional">{message}</h2>}
     </form>
   );

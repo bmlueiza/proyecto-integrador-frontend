@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import "./LoginForm.css";
-function LoginForm({ onLogin }) {
+import Button from "../../Button/Button";
+
+const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -10,28 +12,34 @@ function LoginForm({ onLogin }) {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:8080/api${route}`, {
-        email,
-        password,
+      const response = await axios.get(`http://localhost:8080/api${route}`, {
+        params: {
+          email: email,
+          password: password,
+        },
       });
 
       if (response.status === 200) {
-        onLogin(response.data);
+        {
+          onLogin;
+        }
+        response.data;
         setMessage("Exito de sesión exitoso!");
       } else {
         setMessage("Login fallido.");
       }
     } catch (error) {
-      setMessage("Ocurrió un error durante el inicio de sesión", error);
+      setMessage("Ocurrió un error durante el inicio de sesión");
+      console.log(error);
     }
   };
 
   return (
     <form className="login__form" onSubmit={handleSubmit}>
-      <h1 className="title__header">Ingrese sus datos de inicio de sesión</h1>
+      <h1 className="login__header">Ingrese sus datos de inicio de sesión</h1>
       <div className="login__div">
-        <label className="form__label" htmlFor="useremail">
-          Correo electrónico:
+        <label className="login__label" htmlFor="useremail">
+          <p>Correo electrónico:</p>
           <input
             className="login__input"
             id="useremail"
@@ -39,13 +47,13 @@ function LoginForm({ onLogin }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ejemplo@minga.cl"
-            pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
+            //pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
             title="Ingrese su correo electrónico"
             required
           />
         </label>
-        <label className="form__label" htmlFor="userpassword">
-          Password:
+        <label className="login__label" htmlFor="userpassword">
+          <p>Password:</p>
           <input
             className="login__input"
             id="userpassword"
@@ -57,21 +65,26 @@ function LoginForm({ onLogin }) {
             required
           />
         </label>
-        <label className="form__label" htmlFor="rol">
-          ¿Es colaborador?
+        <label className="login__label login__label__checkbox" htmlFor="rol">
+          <p>¿Es colaborador?</p>
           <input
-            className="login__input"
+            className="login__input login__input__checkbox"
             id="rol"
             type="checkbox"
             onClick={() => setRoute("/colaborador/colaboradorLogin")}
           />
         </label>
       </div>
-      <div className="login__div login__div__no__background">
-        <button type="submit">¡A minguear!</button>
-        {message && <h2>{message}</h2>}
+      <div className="login__div">
+        <Button
+          type="submit"
+          text="A mingear!"
+          className="button__text"
+          onClick={handleSubmit}
+        />
+        {message && <h2 className="login__header">{message}</h2>}
       </div>
     </form>
   );
-}
+};
 export default LoginForm;
