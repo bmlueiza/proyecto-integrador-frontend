@@ -9,7 +9,7 @@
   overflow-x: hidden;
 }
 
-.title__header {
+.login__header {
   display: flex;
   flex-direction: column;
   margin: 5px;
@@ -32,10 +32,9 @@
   margin: 5px;
   width: 95%;
   overflow: hidden;
-  color: var(--color_text);
 }
 
-.form__label {
+.login__label {
   padding: 5px;
   margin: 5px;
   align-items: center;
@@ -47,6 +46,24 @@
   border-radius: 4px;
   border-color: var(--color_card_background);
 }
+
+.login__label__checkbox {
+  padding: 2vw;
+}
+
+.button__text {
+  background-color: var(--color_heading_button);
+  color: var(--color_text_button);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
 #rol {
   cursor: pointer;
 }
