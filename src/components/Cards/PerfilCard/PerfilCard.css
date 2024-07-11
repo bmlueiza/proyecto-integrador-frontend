@@ -88,6 +88,7 @@
   .perfil_card {
     flex-direction: column;
     align-items: center;
+    max-width: 100%;
   }
   .container_chips {
     justify-content: center;

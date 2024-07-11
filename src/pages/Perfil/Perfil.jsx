@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Perfil.css";
 import PerfilCard from "../../components/Cards/PerfilCard/PerfilCard";
 import Button from "../../components/Button/Button";
 import ContactModal from "../../components/Modals/ContactModal/ContactModal";
+import EvaluacionModal from "../../components/Modals/EvaluacionModal/EvaluacionModal";
 import Resena from "../../components/Cards/Resena/Resena";
 
 const client = axios.create({
@@ -19,7 +20,8 @@ function Perfil() {
   const { id } = useParams(); // obtener el id del colaborador desde la URL
   const [colaborador, setColaborador] = useState(null);
   const [resenas, setResenas] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isEvaluacionModalOpen, setIsEvaluacionModalOpen] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -52,32 +54,60 @@ function Perfil() {
   }
 
   const handleContactClick = () => {
-    setIsModalOpen(true);
+    setIsContactModalOpen(true);
     console.log("Contactar a", colaborador.nombre);
   };
 
+  const handleEvaluacionClick = () => {
+    setIsEvaluacionModalOpen(true);
+    console.log("Dejar evaluación para", colaborador.nombre);
+  };
+
   const handleModalClose = () => {
-    setIsModalOpen(false);
+    setIsContactModalOpen(false);
+    setIsEvaluacionModalOpen(false);
     console.log("Cerrar modal");
   };
 
-  const handleFormSubmit = (formData) => {
+  const handleContactFormSubmit = (formData) => {
     console.log("Form submitted:", formData);
     // Aquí puedes manejar el envío del formulario
     setIsModalOpen(false);
   };
 
-  const imagen = `https://ui-avatars.com/api/?name=${colaborador.nombre}+${colaborador.apellidoPaterno}&background=random&color=fff`;
+  const handleEvaluacionFormSubmit = (nuevaResena) => {
+    // Aquí puedes enviar la reseña al backend
+    console.log("Enviando reseña:", nuevaResena);
+    // Aquí deberías implementar la lógica para enviar la reseña al backend usando axios
+    clientResena
+      .post(`/${id}`, nuevaResena)
+      .then((response) => {
+        console.log("Reseña creada:", response.data);
+        // Actualizar las reseñas mostradas después de enviar la nueva reseña
+        setResenas([...resenas, response.data]);
+      })
+      .catch((error) => {
+        console.error("Error al crear la reseña:", error);
+      });
+    setIsEvaluacionModalOpen(false);
+  };
 
   return (
     <main className="perfil">
       <div className="perfil_header">
         <PerfilCard professional={colaborador} />
-        <Button
-          text="Contactar"
-          onClick={handleContactClick}
-          className="btn_big"
-        />
+        <div className="perfil_botones">
+          <Button
+            text="Contactar"
+            onClick={handleContactClick}
+            className="btn_big"
+          />
+          <Button
+            text="Dejar valoración"
+            onClick={handleEvaluacionClick}
+            className="btn_big"
+          />
+        </div>
       </div>
       <hr className="divider_perfil" />
       <h1>Valoraciones</h1>
@@ -89,9 +119,14 @@ function Perfil() {
         )}
       </div>
       <ContactModal
-        isOpen={isModalOpen}
+        isOpen={isContactModalOpen}
         onRequestClose={handleModalClose}
-        onSubmit={handleFormSubmit}
+        onSubmit={handleContactFormSubmit}
+      />
+      <EvaluacionModal
+        isOpen={isEvaluacionModalOpen}
+        onRequestClose={handleModalClose}
+        onSubmit={handleEvaluacionFormSubmit}
       />
     </main>
   );

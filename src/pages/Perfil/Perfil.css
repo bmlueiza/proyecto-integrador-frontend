@@ -47,6 +47,11 @@
   background-color: #f44336; /* Color rojo para no disponible */
   color: white;
 }
+.perfil_botones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .btn_big {
   font-size: 20px;
 }
