@@ -11,6 +11,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import "./SearchBar.css";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -57,7 +58,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar({ className }) {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
+  const navigate = useNavigate();
 
+  const handleItemClick = (id) => {
+    navigate(`/perfil/${id}`);
+  };
+  const SearchResults = ({ searchResults }) => {};
   const handleInputChange = (event) => {
     /* setSearchTerm(event.target.value);  */
     const value = event.target.value;
@@ -114,7 +120,11 @@ export default function SearchAppBar({ className }) {
       {searchResults.length > 0 && (
         <MenuList className="search_results">
           {searchResults.map((result, index) => (
-            <MenuItem className="search_result_item" key={index}>
+            <MenuItem
+              className="search_result_item"
+              key={index}
+              onClick={() => handleItemClick(result.id)}
+            >
               {result.nombre} {result.apellidoPaterno}
               {/* Asegúrate de que esto coincida con la estructura de tus datos */}
             </MenuItem>
