@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import "./Navbar.css";
-import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import SearchAppBar from "../SearchBar/SearchBar";
 import BasicMenu from "../SimpleMenu/SimpleMenu";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import "./Navbar.css";
+
 
 function Navbar() {
   const [isClicked, setIsClicked] = useState(false);
@@ -41,7 +41,7 @@ function Navbar() {
             </li>
 
             <li>
-              <Link to="/" className="nav-link">
+              <Link to="/Mensajes" className="nav-link">
                 Mensajes
               </Link>
               <div className="underline-nav"></div>

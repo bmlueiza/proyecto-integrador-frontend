@@ -1,16 +1,19 @@
-import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
-import Navbar from "./components/Navbar/Navbar";
+import ChatList from './components/ChatList/ChatList';
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home/Home";
-import Categoria from "./pages/Categoria/Categoria";
-import Perfil from "./pages/Perfil/Perfil";
+import Navbar from "./components/Navbar/Navbar";
 import AcercaDe from "./pages/AcercaDe/AcercaDe";
-import Login from "./pages/Login/Login";
-import RegistroUser from "./pages/RegistroUser/RegistroUser";
-import RegistroProfessional from "./pages/RegistroProfessional/RegistroProfessional";
+import Categoria from "./pages/Categoria/Categoria";
 import Evaluacion from "./pages/Evaluacion/Evaluacion";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Perfil from "./pages/Perfil/Perfil";
+import RegistroProfessional from "./pages/RegistroProfessional/RegistroProfessional";
+import RegistroUser from "./pages/RegistroUser/RegistroUser";
+
+
 
 function App() {
   return (
@@ -24,10 +27,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registro-usuario" element={<RegistroUser />} />
         <Route
-          path="/registro-colaborador"
-          element={<RegistroProfessional />}
+          path="/registro-colaborador" element={<RegistroProfessional />}
         />
         <Route path="/evaluacion/:id" element={<Evaluacion />} />
+        <Route path="/mensajes" element={<ChatList />} />
       </Routes>
       <Footer />
     </>

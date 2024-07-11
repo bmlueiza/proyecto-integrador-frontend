@@ -1,35 +1,40 @@
-.presentacion {
-    background-color: #350e7d; /* Color de fondo */
-    color: white; /* Color del texto */
-    padding: 20px; /* Espaciado interno */
-    text-align: center; /* Centrar el texto */
-}
+/* src/pages/AcercaDe/AcercaDe.css */
 
-.header {
+.presentacion {
+    /*background-color: #4A148C; /* Color de fondo */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    margin: 20px auto;
+    color: #fff; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+  }
+  
+  .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #350e7d; /* Color de fondo de la cabecera */
-    padding: 10px; /* Espaciado interno */
-    margin-bottom: 20px; /* Espaciado inferior */
-}
-
-.logo {
-    height: 50px; /* Ajusta el tamaño del logo */
-    margin-right: 10px; /* Espaciado derecho del logo */
-}
-
-.contenido {
-    background-color: #350e7d; /* Color de fondo de la sección de contenido */
-    padding: 20px; /* Espaciado interno */
-}
-
-.contenido h2 {
-    font-size: 2em; /* Tamaño del texto del título */
-    margin-bottom: 20px; /* Espaciado inferior del título */
-}
-
-.contenido p {
-    font-size: 1.2em; /* Tamaño del texto del párrafo */
-    color: white /* Color del texto del párrafo */
-}
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    height: 50px;
+    margin-right: 20px;
+  }
+  
+  .contenido {
+    text-align: center; /* Centrar el texto */
+  }
+  
+  .contenido h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffd700; /* Color del texto del título */
+  }
+  
+  .contenido p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #fff; /* Color del texto */
+  }
+  
