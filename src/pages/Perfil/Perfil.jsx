@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./Perfil.css";
-import ResultadoCategoria from "../../components/Cards/ResultadoCategoria/ResultadoCategoria";
+import PerfilCard from "../../components/Cards/PerfilCard/PerfilCard";
 import Button from "../../components/Button/Button";
 import ContactModal from "../../components/Modals/ContactModal/ContactModal";
 import Resena from "../../components/Cards/Resena/Resena";
@@ -72,7 +72,7 @@ function Perfil() {
   return (
     <main className="perfil">
       <div className="perfil_header">
-        <ResultadoCategoria professional={colaborador} />
+        <PerfilCard professional={colaborador} />
         <Button
           text="Contactar"
           onClick={handleContactClick}
