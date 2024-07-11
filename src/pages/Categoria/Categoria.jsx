@@ -1,6 +1,6 @@
 import "./Categoria.css";
 import ResultadoCategoria from "../../components/Cards/ResultadoCategoria/ResultadoCategoria";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -26,6 +26,11 @@ function capitalizeAndTildeCategory(category) {
 function Categoria() {
   const { nombre } = useParams();
   const nombreConTilde = capitalizeAndTildeCategory(nombre);
+  const navigate = useNavigate();
+
+  const handleCardClick = (id) => {
+    navigate(`/perfil/${id}`);
+  };
 
   const [professionals, setProfessionals] = useState([]);
   const [filters, setFilters] = useState({ comuna: "", puntuacion: "" });
@@ -103,6 +108,7 @@ function Categoria() {
           <ResultadoCategoria
             key={professional.id}
             professional={professional}
+            onClick={() => handleCardClick(professional.id)}
           />
         ))}
       </div>

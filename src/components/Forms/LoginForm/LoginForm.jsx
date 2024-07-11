@@ -27,13 +27,13 @@ function LoginForm({ onLogin }) {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
-      <h1 className="title-header">Ingrese sus datos de inicio de sesión</h1>
-      <div className="login-div">
-        <label className="form-label" htmlFor="useremail">
+    <form className="login__form" onSubmit={handleSubmit}>
+      <h1 className="title__header">Ingrese sus datos de inicio de sesión</h1>
+      <div className="login__div">
+        <label className="form__label" htmlFor="useremail">
           Correo electrónico:
           <input
-            className="login-input"
+            className="login__input"
             id="useremail"
             type="email"
             value={email}
@@ -44,10 +44,10 @@ function LoginForm({ onLogin }) {
             required
           />
         </label>
-        <label className="form-label" htmlFor="userpassword">
+        <label className="form__label" htmlFor="userpassword">
           Password:
           <input
-            className="login-input"
+            className="login__input"
             id="userpassword"
             type="password"
             value={password}
@@ -57,17 +57,17 @@ function LoginForm({ onLogin }) {
             required
           />
         </label>
-        <label className="form-label" htmlFor="rol">
+        <label className="form__label" htmlFor="rol">
           ¿Es colaborador?
           <input
-            className="login-input"
+            className="login__input"
             id="rol"
             type="checkbox"
             onClick={() => setRoute("/colaborador/colaboradorLogin")}
           />
         </label>
       </div>
-      <div className="login-div login-div-no-background">
+      <div className="login__div login__div__no__background">
         <button type="submit">¡A minguear!</button>
         {message && <h2>{message}</h2>}
       </div>

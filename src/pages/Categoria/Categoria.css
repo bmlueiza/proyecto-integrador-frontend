@@ -33,22 +33,6 @@
   padding: 8px;
   min-width: 300px;
 }
-.btn {
-  background-color: var(--color_heading_button);
-  color: var(--color_text_button);
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out,
-    color 0.3s ease-in-out;
-}
-
-.btn:hover {
-  background-color: var(--color_background);
-  color: var(--color_heading_button);
-  border: 1px solid var(--color_heading_button);
-}
 .filtros {
   display: flex;
   gap: 10px;

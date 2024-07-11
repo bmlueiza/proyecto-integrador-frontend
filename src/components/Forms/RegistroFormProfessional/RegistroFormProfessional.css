@@ -25,6 +25,18 @@
   padding-block-end: 1vw;
 }
 
+@media only screen and (max-width: 600px) {
+  .professional__div {
+    grid-template-columns: 45vw 45vw;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .proessional__div {
+    grid-template-columns: 80vw;
+  }
+}
+
 .divider {
   border-top: 2px solid var(--color_text);
   margin: 0 10%;
