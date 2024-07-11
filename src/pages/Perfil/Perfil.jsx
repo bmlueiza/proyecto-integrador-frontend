@@ -1,11 +1,11 @@
-import { FaStar, FaRegStar } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "./Perfil.css";
 import ResultadoCategoria from "../../components/Cards/ResultadoCategoria/ResultadoCategoria";
 import Button from "../../components/Button/Button";
+import ContactModal from "../../components/Modals/ContactModal/ContactModal";
 import Resena from "../../components/Cards/Resena/Resena";
-import "./Perfil.css";
 
 const client = axios.create({
   baseURL: "http://localhost:8080/api/colaborador",
@@ -61,6 +61,12 @@ function Perfil() {
     console.log("Cerrar modal");
   };
 
+  const handleFormSubmit = (formData) => {
+    console.log("Form submitted:", formData);
+    // Aquí puedes manejar el envío del formulario
+    setIsModalOpen(false);
+  };
+
   const imagen = `https://ui-avatars.com/api/?name=${colaborador.nombre}+${colaborador.apellidoPaterno}&background=random&color=fff`;
 
   return (
@@ -82,6 +88,11 @@ function Perfil() {
           resenas.map((resena) => <Resena key={resena.id} resena={resena} />)
         )}
       </div>
+      <ContactModal
+        isOpen={isModalOpen}
+        onRequestClose={handleModalClose}
+        onSubmit={handleFormSubmit}
+      />
     </main>
   );
 }
