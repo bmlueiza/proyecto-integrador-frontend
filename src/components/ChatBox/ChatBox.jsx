@@ -9,24 +9,18 @@ function ChatBox() {
     watch,
     handleSubmit,
   } = useForm({
-    defaultValues: {
-      nombre: "Luis",
-      apellido: "Perez",
-    },
+    defaultValues: {},
   });
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-  /* el validador en otra pestaña js seria asi : */
-
-  /*export { edadValidator } */
   return (
     <div>
       <div className="contenedor">
         <h2>Formulario de contacto</h2>
-        <p>Hola: {watch("nombre")}</p>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label>Asunto</label>
@@ -35,9 +29,7 @@ function ChatBox() {
 
           <div className="mensaje">
             <label>Mensaje</label>
-            <textarea name="text" cols="32" rows="10">
-              Este es el valor de texto por defecto
-            </textarea>
+            <textarea name="text" cols="32" rows="10"></textarea>
           </div>
 
           <input type="submit" value="Enviar" />
