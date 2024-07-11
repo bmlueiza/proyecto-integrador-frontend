@@ -11,7 +11,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 3rem;
-  background-color: #663f9c;
+  background-color: var(--color_card_background);
 }
 .nav .nav-items {
   flex-grow: 1;
@@ -46,7 +46,7 @@
 .nav .nav-items ul li {
   margin-right: 1.1rem;
 }
-.nav .nav-items ul li a {
+.nav .nav-items ul li .nav-link {
   color: white;
   text-decoration: none;
   font-size: 24px;
@@ -152,7 +152,7 @@
     align-items: flex-start;
   }
 
-  .nav .nav-items ul li a {
+  .nav .nav-items ul li .nav-link {
     font-size: 18px;
     line-height: 36px;
   }
