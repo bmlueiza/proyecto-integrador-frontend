@@ -18,18 +18,27 @@ function ChatBox() {
 
   return (
     <div>
-      <div className="contenedor">
-        <h2>Formulario de contacto</h2>
+      <div className="contenedor2">
+        <h2 className="title_contac2">Formulario de contacto</h2>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className="contact_form2" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label>Asunto</label>
-            <input type="text" {...register("asunto")} />
+            <label className="contact_label2">Asunto</label>
+            <input
+              className="contact_input2"
+              type="text"
+              {...register("asunto")}
+            />
           </div>
 
-          <div className="mensaje">
-            <label>Mensaje</label>
-            <textarea name="text" cols="32" rows="10"></textarea>
+          <div className="mensaje2">
+            <label className="contact_label2">Mensaje</label>
+            <textarea
+              className="contact_textarea2"
+              name="text"
+              cols="32"
+              rows="10"
+            ></textarea>
           </div>
 
           <input type="submit" value="Enviar" />

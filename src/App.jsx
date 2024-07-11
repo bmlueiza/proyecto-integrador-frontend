@@ -11,7 +11,6 @@ import Login from "./pages/Login/Login";
 import RegistroUser from "./pages/RegistroUser/RegistroUser";
 import RegistroProfessional from "./pages/RegistroProfessional/RegistroProfessional";
 import Evaluacion from "./pages/Evaluacion/Evaluacion";
-import ChatBox from "./components/ChatBox/ChatBox";
 
 function App() {
   return (
@@ -30,7 +29,6 @@ function App() {
         />
         <Route path="/evaluacion/:id" element={<Evaluacion />} />
       </Routes>
-
       <Footer />
     </>
   );
