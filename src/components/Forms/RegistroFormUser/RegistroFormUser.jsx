@@ -81,7 +81,7 @@ const RegisterUser = ({ onRegister }) => {
       email,
       celular,
       password,
-      comunas: selectedComunas.map((comuna) => comuna.value),
+      selectedComunas,
     };
 
     console.log("Enviando datos:", data);
@@ -142,7 +142,7 @@ const RegisterUser = ({ onRegister }) => {
             required
           ></input>
         </label>
-        <label className="user__label" Htmlfor="apellido-materno">
+        <label className="user__label" htmlFor="apellido-materno">
           <p>Apellido materno</p>
           <input
             id="apellido-materno"
@@ -231,7 +231,7 @@ const RegisterUser = ({ onRegister }) => {
             id="comunas__select"
             options={comunas}
             value={selectedComunas}
-            onChange={(selectedOptions) => setComunas(selectedOptions)}
+            onChange={(selectedOptions) => setselectedComunas(selectedOptions)}
             required
           />
         </label>
