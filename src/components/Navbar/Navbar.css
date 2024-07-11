@@ -1,13 +1,8 @@
-/* * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color: white;
-  
-} */
+/*#region ----------------------------------------NAVBAR---------------*/
 
 .nav {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 3rem;
@@ -60,12 +55,7 @@
   align-items: center;
   margin-left: 30px;
 }
-.searchbar {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: auto;
-}
+
 .menu-icon-resp {
   width: 100%;
   color: white;
@@ -76,6 +66,67 @@
   right: 0;
   display: none;
 }
+/*#endregion----------------------------------------NAVBAR---------------*/
+/*#region ----------------------------------------SEARCH-BAR---------------*/
+.searchbar {
+  /* display: flex; */
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: auto;
+  position: relative;
+}
+/* .search_input {
+  width: 300px;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: width 0.4s ease-in-out;
+  background-color: red;
+} */
+.search_input:focus {
+  width: 400px;
+  outline: none;
+  border-color: #007bff;
+}
+
+.search-bar .search_results {
+  /* margin-top: 10px; */
+  /* background-color: green; */
+  /* display: flex; */
+
+  flex-direction: column;
+  /* top: 50px; */
+  position: absolute;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* transition: background-color 0.2s ease-in-out; */
+
+  z-index: 2;
+}
+.search-bar .search-text {
+  margin-left: 0;
+}
+
+.search_result_item {
+  padding: 10px;
+  border-bottom: 1px solid #ced4da;
+  cursor: pointer;
+}
+
+.search_result_item:last-child {
+  border-bottom: none;
+}
+
+.search_result_item:hover {
+  background-color: #f1f1f1;
+}
+
+/*#endregion----------------------------------------SEARCH-BAR---------------*/
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
@@ -140,6 +191,9 @@
     opacity: 1;
     height: auto;
     transition: opacity 0.5s ease, height 0.5s ease;
+  }
+  .search-bar .search_results {
+    position: relative;
   }
 }
 
