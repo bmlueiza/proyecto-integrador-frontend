@@ -1,4 +1,4 @@
-.login-form {
+.login__form {
   display: flex;
   flex-direction: column;
   margin: 15px;
@@ -9,7 +9,7 @@
   overflow-x: hidden;
 }
 
-.title-header {
+.title__header {
   display: flex;
   flex-direction: column;
   margin: 5px;
@@ -19,7 +19,7 @@
   justify-content: center;
 }
 
-.login-div {
+.login__div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,13 +35,13 @@
   color: var(--color_text);
 }
 
-.form-label {
+.form__label {
   padding: 5px;
   margin: 5px;
   align-items: center;
 }
 
-.login-input {
+.login__input {
   margin: 5px;
   padding: 5px;
   border-radius: 4px;
