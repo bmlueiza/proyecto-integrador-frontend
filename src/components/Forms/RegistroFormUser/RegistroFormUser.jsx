@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import Select from "react-select";
 import "./RegistroFormUser.css";
+import Button from "../../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const comunas = [
   { value: "alhue", label: "Alhué" },
@@ -14,7 +16,7 @@ const comunas = [
   { value: "curacavi", label: "Curacaví" },
   { value: "el+bosque", label: "El Bosque" },
   { value: "el+monte", label: "El Monte" },
-  { value: "estacion_central", label: "Estación Central" },
+  { value: "estacion+central", label: "Estación Central" },
   { value: "huechuraba", label: "Huechuraba" },
   { value: "independencia", label: "Independencia" },
   { value: "isla+de+maipo", label: "Isla de Maipo" },
@@ -69,6 +71,8 @@ const RegisterUser = ({ onRegister }) => {
   const [selectedComunas, setComunas] = useState([]);
   const [message, setMessage] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -81,19 +85,35 @@ const RegisterUser = ({ onRegister }) => {
       email,
       celular,
       password,
-      selectedComunas,
     };
 
-    console.log("Enviando datos:", data);
+    console.log("Enviando datos:", data, data.comuna);
+
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/usuarios",
+        `http://localhost:8080/api/usuarios/nuevo?comuna=${data.comuna}`,
         data
       );
       setMessage("Registro exitoso");
-      onRegister(response.data);
+      {
+        onRegister;
+      }
+      if (response.data) {
+        setRut("");
+        setNombre("");
+        setApellidoPaterno("");
+        setApellidoMaterno("");
+        setFechaNacimiento("");
+        setEmail("");
+        setCelular("");
+        setPassword("");
+        setConfirmarPassword("");
+
+        navigate("/");
+      }
     } catch (error) {
       setMessage("Error en el registro");
+      console.log(error);
     }
   };
 
@@ -231,12 +251,17 @@ const RegisterUser = ({ onRegister }) => {
             id="comunas__select"
             options={comunas}
             value={selectedComunas}
-            onChange={(selectedOptions) => setselectedComunas(selectedOptions)}
+            onChange={(selectedOptions) => setComunas(selectedOptions)}
             required
           />
         </label>
       </div>
-      <button type="submit">¡A minguear!</button>
+      <Button
+        type="submit"
+        text="A mingear!"
+        className="button__text"
+        onClick={handleSubmit}
+      />
       {message && <h2 className="hedding__register__user">{message}</h2>}
     </form>
   );
