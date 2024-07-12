@@ -7,7 +7,7 @@
 }
 
 .chat-list h2 {
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 10px;
   color: #ffd700; /* Color del texto del título */
   text-align: center;
@@ -55,4 +55,53 @@
 
 .chat-list li:hover {
   background-color: #7b1fa2;
+}
+
+.container_mensaje {
+  display: flex;
+  align-items: start;
+  gap: 15px;
+  background-color: var(--color_card_background);
+  padding: 10px;
+  color: var(--color_text);
+  border-radius: 10px;
+}
+.foto_mensaje {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.mensaje_data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.mensaje_nombre_date {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.mensaje_nombre {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color_heading_button);
+}
+.mensaje_asunto_content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.mensaje_asunto {
+  font-size: 17px;
+  color: var(--color_heading_button);
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.perfil_link {
+  text-decoration: none;
+}
+.mensaje_fecha {
+  display: flex;
+  justify-content: flex-end;
 }

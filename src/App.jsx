@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
 import Mensajes from "./pages/Mensajes/Mensajes";
@@ -15,9 +15,18 @@ import RegistroProfessional from "./pages/RegistroProfessional/RegistroProfessio
 import RegistroUser from "./pages/RegistroUser/RegistroUser";
 
 function App() {
+  const location = useLocation();
+
+  // Define las rutas en las que no deseas mostrar el Navbar
+  const noNavbarRoutes = [
+    "/login",
+    "/registro-usuario",
+    "/registro-colaborador",
+  ];
+
   return (
     <>
-      <Navbar />
+      {!noNavbarRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/categoria/:nombre" element={<Categoria />} />
