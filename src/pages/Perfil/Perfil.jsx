@@ -70,9 +70,9 @@ function Perfil() {
   };
 
   const handleContactFormSubmit = (formData) => {
-    console.log("Form submitted:", formData);
+    console.log("Formulario enviado:", formData);
     // Aquí puedes manejar el envío del formulario
-    setIsModalOpen(false);
+    setIsContactModalOpen(false);
   };
 
   const handleEvaluacionFormSubmit = (nuevaResena) => {
@@ -122,6 +122,7 @@ function Perfil() {
         isOpen={isContactModalOpen}
         onRequestClose={handleModalClose}
         onSubmit={handleContactFormSubmit}
+        colaboradorId={id}
       />
       <EvaluacionModal
         isOpen={isEvaluacionModalOpen}
