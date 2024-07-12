@@ -1,64 +1,46 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
 import "./ChatList.css";
 
-const ChatList = ({ user, userType }) => {
-  const [messages, setMessages] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+function ChatList({ mensaje }) {
+  const { asunto, contenido, fechaEnvio, usuario, colaborador } = mensaje;
 
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        if (!user || !user.id) {
-          console.error("User or user.id is not defined.");
-          return;
-        }
+  const imagen = `https://ui-avatars.com/api/?name=${colaborador.nombre}+${colaborador.apellidoPaterno}&background=random&color=fff`;
 
-        const response = await axios.get(
-          `http://localhost:8080/api/mensajes/${userType}/${user.id}`
-        );
-        setMessages(response.data);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
+  // Opciones para formatear la fecha y hora
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false, // Formato de 24 horas
+  };
 
-    fetchMessages();
-  }, [userType, user]);
-
-  const filteredMessages = messages.filter((message) => {
-    const sender = message.sender ? message.sender.toLowerCase() : "";
-    const subject = message.subject ? message.subject.toLowerCase() : "";
-
-    return (
-      sender.includes(searchTerm.toLowerCase()) ||
-      subject.includes(searchTerm.toLowerCase())
-    );
-  });
+  // Formatea la fecha y hora usando las opciones definidas
+  const formattedFecha = new Date(fechaEnvio).toLocaleString("es-CL", options);
 
   return (
-    <div className="chat-list">
-      <h2>Tus mensajes</h2>
-      <input
-        type="text"
-        placeholder="Buscar"
-        className="search-input"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <ul>
-        {filteredMessages.map((message) => (
-          <li key={message.id}>
-            <div>
-              <strong>{message.sender}</strong>
-              <span>{message.time}</span>
-            </div>
-            <div>{message.subject}</div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="container_mensaje">
+        <img className="foto_mensaje" src={imagen} alt="imagen_perfil" />
+        <div className="mensaje_data">
+          <div className="mensaje_nombre_date">
+            <Link to={`/perfil/${colaborador.id}`} className="perfil_link">
+              <span className="mensaje_nombre">
+                {colaborador.nombre} {colaborador.apellidoPaterno}{" "}
+                {colaborador.apellidoMaterno}
+              </span>
+            </Link>
+            <span className="mensaje_fecha">{formattedFecha}</span>
+          </div>
+          <div className="mensaje_asunto_content">
+            <span className="mensaje_asunto">{asunto}</span>
+            <span className="mensaje_contenido">{contenido}</span>
+          </div>
+        </div>
+      </div>
+    </>
   );
-};
+}
 
 export default ChatList;
