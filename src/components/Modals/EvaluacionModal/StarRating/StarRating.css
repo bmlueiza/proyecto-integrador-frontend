@@ -9,13 +9,6 @@
   cursor: pointer;
 }
 
-.star-rating .star:hover,
-.star-rating .star:hover ~ .star {
-  color: var(
-    --color_heading_button
-  ); /* Color de las estrellas al pasar el mouse */
-}
-
 .star-rating .star.selected {
   color: var(--color_heading_button); /* Color de las estrellas seleccionadas */
 }
