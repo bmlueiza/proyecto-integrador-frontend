@@ -30,7 +30,7 @@ const StarRating = ({ onChange }) => {
           <FaStar
             key={index}
             className={
-              selected ? "star selected" : filled ? "star filled" : "star"
+              starValue <= (hoverValue || rating) ? "star selected" : "star"
             }
             onClick={() => handleClick(starValue)}
             onMouseEnter={() => handleHover(starValue)}
