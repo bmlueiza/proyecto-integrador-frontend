@@ -1,16 +1,18 @@
-import "./App.css";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
+import "./App.css";
 
-import Navbar from "./components/Navbar/Navbar";
+import Mensajes from "./pages/Mensajes/Mensajes";
 import Footer from "./components/Footer/Footer";
-import Home from "./pages/Home/Home";
-import Categoria from "./pages/Categoria/Categoria";
-import Perfil from "./pages/Perfil/Perfil";
+import Navbar from "./components/Navbar/Navbar";
 import AcercaDe from "./pages/AcercaDe/AcercaDe";
-import Login from "./pages/Login/Login";
-import RegistroUser from "./pages/RegistroUser/RegistroUser";
-import RegistroProfessional from "./pages/RegistroProfessional/RegistroProfessional";
+import Categoria from "./pages/Categoria/Categoria";
 import Evaluacion from "./pages/Evaluacion/Evaluacion";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Perfil from "./pages/Perfil/Perfil";
+import RegistroProfessional from "./pages/RegistroProfessional/RegistroProfessional";
+import RegistroUser from "./pages/RegistroUser/RegistroUser";
 
 function App() {
   return (
@@ -28,6 +30,7 @@ function App() {
           element={<RegistroProfessional />}
         />
         <Route path="/evaluacion/:id" element={<Evaluacion />} />
+        <Route path="/mensajes" element={<Mensajes />} />
       </Routes>
       <Footer />
     </>

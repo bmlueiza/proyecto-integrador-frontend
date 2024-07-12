@@ -1,0 +1,80 @@
+.EvaluacionModal {
+  position: relative;
+  background: var(--color_background);
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.EvaluacionOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: var(--color_text);
+}
+
+.close-button:hover {
+  color: var(--color_error);
+}
+
+.container_evaluacion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.title_evaluacion {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.evaluacion_form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.evaluacion_label_input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.evaluacion_label {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color_text);
+}
+
+.evaluacion_input,
+.evaluacion_textarea {
+  max-width: 400px;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.evaluacion_textarea {
+  min-height: 100px;
+  resize: vertical;
+}

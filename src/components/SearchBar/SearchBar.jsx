@@ -8,7 +8,10 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
 import "./SearchBar.css";
+import { useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,18 +57,51 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar({ className }) {
   const [searchTerm, setSearchTerm] = React.useState("");
+  const [searchResults, setSearchResults] = React.useState([]);
+  const navigate = useNavigate();
+
+  const handleItemClick = (id) => {
+    navigate(`/perfil/${id}`);
+  };
+  const SearchResults = ({ searchResults }) => {};
   const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
+    /* setSearchTerm(event.target.value);  */
+    const value = event.target.value;
+    setSearchTerm(value);
+
+    if (value.trim() === "") {
+      setSearchResults([]);
+    }
   };
 
-  const handleSearch = () => {
-    // ACA LOGICA DE LA BUSQUEDA, LLAMADA A LA API, ETC
-    console.log("Searching for:", searchTerm);
+  const handleSearch = async () => {
+    if (searchTerm.trim() === "") {
+      setSearchResults([]); // CAMBIADO ESTO
+      return; // Si el término de búsqueda está vacío, no hagas nada
+      // ACA LOGICA DE LA BUSQUEDA, LLAMADA A LA API, ETC
+      /*  console.log("Searching for:", searchTerm); */
+    }
+    try {
+      const response = await fetch(
+        `http://localhost:8080/api/colaborador/nombreLike?nombre=${encodeURIComponent(
+          searchTerm
+        )}`
+      );
+      if (!response.ok) {
+        throw new Error("Error en la solicitud de búsqueda");
+      }
+      const data = await response.json();
+      /* console.log("Resultados de la búsqueda:", data); */
+      setSearchResults(data); // Guarda los resultados de la búsqueda en el estado
+      // Aquí puedes hacer algo con los datos, como actualizar el estado o mostrar los resultados en la UI
+    } catch (error) {
+      console.error("Error al realizar la búsqueda:", error);
+    }
   };
 
   return (
     <Box className={`search-bar ${className}`}>
-      <Search>
+      <Search className="search-text">
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -81,6 +117,21 @@ export default function SearchAppBar({ className }) {
           }}
         />
       </Search>
+      {searchResults.length > 0 && (
+        <MenuList className="search_results">
+          {searchResults.map((result, index) => (
+            <MenuItem
+              className="search_result_item"
+              key={index}
+              onClick={() => handleItemClick(result.id)}
+            >
+              {result.nombre} {result.apellidoPaterno}
+              {/* Asegúrate de que esto coincida con la estructura de tus datos */}
+            </MenuItem>
+          ))}
+        </MenuList>
+      )}
+
       {/* a */}
     </Box>
   );

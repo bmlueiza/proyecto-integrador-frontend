@@ -1,0 +1,21 @@
+.star-rating {
+  display: inline-block;
+  font-size: 24px;
+}
+
+.star-rating .star {
+  color: #ddd; /* Color de las estrellas no seleccionadas */
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+  color: var(
+    --color_heading_button
+  ); /* Color de las estrellas al pasar el mouse */
+}
+
+.star-rating .star.selected {
+  color: var(--color_heading_button); /* Color de las estrellas seleccionadas */
+}
