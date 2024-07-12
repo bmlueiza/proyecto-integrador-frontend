@@ -95,8 +95,8 @@ const RegisterProfessional = ({ onRegister }) => {
       email,
       celular,
       password,
-      comunas: selectedComunas.map((comuna) => comuna.value),
-      categorias: selectedCategorias.map((categoria) => categoria.value),
+      comunas: selectedComunas.map((comunas) => comunas.value),
+      categorias: selectedCategorias.map((categorias) => categorias.value),
     };
 
     console.log("Enviando datos:", data);
@@ -107,9 +107,27 @@ const RegisterProfessional = ({ onRegister }) => {
         data
       );
       setMessage("Registro exitoso");
-      onRegister(response.data);
+      {
+        onRegister;
+      }
+      if (response.data) {
+        setRut("");
+        setNombre("");
+        setApellidoPaterno("");
+        setApellidoMaterno("");
+        setFechaNacimiento("");
+        setEmail("");
+        setCelular("");
+        setPassword("");
+        setConfirmarPassword("");
+        setComunas([]);
+        setCategorias([]);
+
+        // navigate("/");
+      }
     } catch (error) {
       setMessage("Error en el registro");
+      console.log(error);
     }
   };
 
@@ -263,7 +281,7 @@ const RegisterProfessional = ({ onRegister }) => {
       </div>
       <Button
         type="submit"
-        text="A mingear!"
+        text="¡A mingear!"
         className="button__text"
         onClick={handleSubmit}
       />

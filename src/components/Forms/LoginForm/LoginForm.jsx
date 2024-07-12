@@ -2,12 +2,29 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./LoginForm.css";
 import Button from "../../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [route, setRoute] = useState("/usuarios/usuarioLogin");
+  const [userType, setUserType] = useState("usuario"); // Usuario seleccionado por defecto
+
+  const navigate = useNavigate();
+
+  const handleUserTypeChange = (type) => {
+    setUserType(type);
+    setRoute(
+      type === "colaborador"
+        ? "/colaborador/colaboradorLogin"
+        : "/usuarios/usuarioLogin"
+    );
+
+    // Update localStorage
+    localStorage.setItem("userRole", type);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -19,14 +36,21 @@ const LoginForm = ({ onLogin }) => {
         },
       });
 
-      if (response.status === 200) {
-        {
-          onLogin;
-        }
-        response.data;
-        setMessage("Exito de sesión exitoso!");
+      if (response.data) {
+        // Save login data to localStorage
+        localStorage.setItem("userData", JSON.stringify(response.data));
+
+        setMessage("¡Inicio de sesión exitoso!");
+        setEmail("");
+        setPassword("");
+
+        // Call the onLogin callback
+        onLogin(response.data);
+
+        // Navigate to home page
+        navigate("/");
       } else {
-        setMessage("Login fallido.");
+        setMessage("Login fallido. Verifique su correo y contraseña");
       }
     } catch (error) {
       setMessage("Ocurrió un error durante el inicio de sesión");
@@ -47,7 +71,6 @@ const LoginForm = ({ onLogin }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="ejemplo@minga.cl"
-            //pattern="[A-Za-z]+@[A-Za-z]+.[A-Za-z]+"
             title="Ingrese su correo electrónico"
             required
           />
@@ -61,30 +84,56 @@ const LoginForm = ({ onLogin }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="**********"
-            title="Ingrese su constraseña"
+            title="Ingrese su contraseña"
             required
           />
         </label>
-        <label className="login__label login__label__checkbox" htmlFor="rol">
-          <p>¿Es colaborador?</p>
-          <input
-            className="login__input login__input__checkbox"
-            id="rol"
-            type="checkbox"
-            onClick={() => setRoute("/colaborador/colaboradorLogin")}
-          />
-        </label>
+        <div className="login__radio__group">
+          <label className="login__radio__label">
+            <input
+              type="radio"
+              name="userType"
+              value="usuario"
+              checked={userType === "usuario"}
+              onChange={() => handleUserTypeChange("usuario")}
+            />
+            Usuario
+          </label>
+          <label className="login__radio__label">
+            <input
+              type="radio"
+              name="userType"
+              value="colaborador"
+              checked={userType === "colaborador"}
+              onChange={() => handleUserTypeChange("colaborador")}
+            />
+            Colaborador
+          </label>
+        </div>
       </div>
       <div className="login__div">
         <Button
           type="submit"
-          text="A mingear!"
+          text="¡A mingear!"
           className="button__text"
           onClick={handleSubmit}
+        />
+        <Button
+          type="button"
+          text="Crear cuenta usuario"
+          className="button__text"
+          onClick={() => navigate("/registro-usuario")}
+        />
+        <Button
+          type="button"
+          text="Crear cuenta colaborador"
+          className="button__text"
+          onClick={() => navigate("/registro-colaborador")}
         />
         {message && <h2 className="login__header">{message}</h2>}
       </div>
     </form>
   );
 };
+
 export default LoginForm;

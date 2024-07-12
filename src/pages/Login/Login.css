@@ -1,0 +1,12 @@
+.title_home {
+  text-align: center;
+  font-size: 50px;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.divider {
+  border-top: 2px solid var(--color_text);
+  margin: 0 10%;
+  margin-bottom: 20px;
+}

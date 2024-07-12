@@ -1,29 +1,59 @@
-// src/components/ChatList/ChatList.jsx
-import React from 'react';
-import './ChatList.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./ChatList.css";
 
-const ChatList = () => {
-  const messages = [
-    { id: 1, sender: 'Luis Paolo', time: '12:00 PM', subject: 'Asunto x' },
-    { id: 2, sender: 'Angel Quera', time: '11:00 AM', subject: 'Asunto Y' },
-    { id: 3, sender: 'Myriam Hernandez', time: '10:00 AM', subject: 'Asunto D' },
-    { id: 4, sender: 'Lorenzo Soto', time: '3:00 AM', subject: 'Asunto Q' },
-  ];
+const ChatList = ({ user, userType }) => {
+  const [messages, setMessages] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        if (!user || !user.id) {
+          console.error("User or user.id is not defined.");
+          return;
+        }
+
+        const response = await axios.get(
+          `http://localhost:8080/api/mensajes/${userType}/${user.id}`
+        );
+        setMessages(response.data);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+
+    fetchMessages();
+  }, [userType, user]);
+
+  const filteredMessages = messages.filter((message) => {
+    const sender = message.sender ? message.sender.toLowerCase() : "";
+    const subject = message.subject ? message.subject.toLowerCase() : "";
+
+    return (
+      sender.includes(searchTerm.toLowerCase()) ||
+      subject.includes(searchTerm.toLowerCase())
+    );
+  });
 
   return (
     <div className="chat-list">
- <h2>Tus mensajes</h2>
-      <input type="text" placeholder="Buscar" className="search-input" />
+      <h2>Tus mensajes</h2>
+      <input
+        type="text"
+        placeholder="Buscar"
+        className="search-input"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
       <ul>
-        {messages.map(message => (
+        {filteredMessages.map((message) => (
           <li key={message.id}>
             <div>
               <strong>{message.sender}</strong>
               <span>{message.time}</span>
             </div>
-            <div>
-              {message.subject}
-            </div>
+            <div>{message.subject}</div>
           </li>
         ))}
       </ul>
