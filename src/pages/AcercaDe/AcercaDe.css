@@ -1,73 +1,54 @@
 /* src/pages/AcercaDe/AcercaDe.css */
 
 .presentacion {
-    /*background-color: #4A148C; /* Color de fondo */
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 800px;
-    margin: 20px auto;
-    color: #fff; /* Color del texto */
-    text-align: center; /* Centrar el texto */
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .logo {
-    height: 50px;
-    margin-right: 20px;
-  }
-  
-  .contenido {
-    text-align: center; /* Centrar el texto */
-  }
-  
-  .contenido h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #ffd700; /* Color del texto del título */
-  }
-  
-  .contenido p {
-    font-size: 16px;
-    margin-bottom: 20px;
-    color: #fff; /* Color del texto */
-  }
-  
-  background-color: var (--color_background);
-  color: white; /* Color del texto */
-  padding: 20px; /* Espaciado interno */
+  /*background-color: #4A148C; /* Color de fondo */
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 20px auto;
+  color: #fff; /* Color del texto */
   text-align: center; /* Centrar el texto */
 }
 
-/* 
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #350e7d; /* Color de fondo de la cabecera 
-  padding: 10px; /* Espaciado interno 
-  margin-bottom: 20px; /* Espaciado inferior 
-}                     
+  margin-bottom: 20px;
+}
 
 .logo {
-  height: 50px; /* Ajusta el tamaño del logo 
-  margin-right: 10px; /* Espaciado derecho del logo 
-} */
+  height: 50px;
+  margin-right: 20px;
+}
+
+.contenido h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ffd700; /* Color del texto del título */
+}
+
+.contenido p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #fff; /* Color del texto */
+}
 
 .header {
   display: none;
 }
 
 .contenido {
+  text-align: justify; /* Centrar el texto */
   background-color: var(
-    --color_in_case
+    --color_card_background
   ); /* Color de fondo de la sección de contenido */
   padding: 20px; /* Espaciado interno */
+  margin-top: 50px;
+}
+
+.titulocont {
+  text-align: center;
 }
 
 .contenido h2 {
@@ -81,9 +62,9 @@
 }
 
 .slidercont {
-  margin: auto;
-  width: 900px;
-  padding: 10px;
+  margin: 0;
+  width: 750px;
+  padding: px;
 }
 
 .slider {
@@ -101,8 +82,8 @@
 
 ul.slider {
   position: relative;
-  width: 800px;
-  height: 700px;
+  width: 750px;
+  height: 750px;
 }
 
 ul.slider li {
@@ -117,7 +98,7 @@ ul.slider li {
 }
 
 ul.slider li img {
-  width: 110%;
+  width: 100%;
   height: 90%;
   object-fit: cover;
 }
@@ -151,4 +132,78 @@ ul.slider li:target {
   border-radius: 100%;
   margin-right: 10px;
   font-weight: 500;
+}
+
+@media (max-width: 767px) {
+  .presentacion {
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 100%;
+    margin: 10px auto;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    height: 40px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .contenido h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+
+  .contenido p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .contenido {
+    text-align: left;
+    padding: 10px;
+    margin-top: 30px;
+  }
+
+  .titulocont {
+    text-align: left;
+  }
+
+  .contenido h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  .contenido p {
+    font-size: 1em;
+  }
+
+  .slidercont {
+    width: 100%;
+    padding: 0;
+  }
+
+  ul.slider {
+    width: 100%;
+    height: 300px;
+  }
+
+  ul.slider li img {
+    height: 80%;
+  }
+
+  .slidermenu li a {
+    padding: 5px;
+    width: 30px;
+    height: auto;
+    font-size: 16px;
+    margin-right: 5px;
+  }
 }
