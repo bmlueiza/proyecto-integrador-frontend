@@ -127,6 +127,7 @@ function Perfil() {
         isOpen={isEvaluacionModalOpen}
         onRequestClose={handleModalClose}
         onSubmit={handleEvaluacionFormSubmit}
+        colaboradorId={id}
       />
     </main>
   );

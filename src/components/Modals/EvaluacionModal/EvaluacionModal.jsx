@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import PropTypes from "prop-types";
 import { FaTimes } from "react-icons/fa";
@@ -6,21 +6,62 @@ import "./EvaluacionModal.css";
 import Button from "../../Button/Button";
 import StarRating from "./StarRating/StarRating";
 
+/* localhost:8080/api/resenas  RUTA*/
 Modal.setAppElement("#root");
 
-const EvaluacionModal = ({ isOpen, onRequestClose, onSubmit }) => {
+const EvaluacionModal = ({
+  isOpen,
+  onRequestClose,
+  onSubmit,
+  colaboradorId,
+}) => {
   const [rating, setRating] = useState(0);
   const [contenido, setContenido] = useState("");
+  const [user, setUser] = useState(null);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    const userFromLocalStorage = JSON.parse(localStorage.getItem("userData"));
+    setUser(userFromLocalStorage);
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!user || !user.id) {
+      console.error("No se ha encontrado información de usuario válida");
+      return;
+    }
+
     const nuevaResena = {
       contenido,
       valoracion: rating,
-      usuarioId: 1, // Ajusta según tu lógica
-      colaboradorId: 1, // Ajusta según tu lógica
     };
-    onSubmit(nuevaResena);
+
+    // Guardar en LocalStorage
+    localStorage.setItem("nuevaResena", JSON.stringify(nuevaResena));
+
+    // Construir la URL con los parámetros usuarioId y colaboradorId
+    const url = `http://localhost:8080/api/resenas?usuarioId=${user.id}&colaboradorId=${colaboradorId}`;
+
+    // Enviar datos a la base de datos
+    try {
+      console.log("Enviando datos:", nuevaResena); // Verificar el cuerpo de la solicitud
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(nuevaResena),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Error en la solicitud");
+      }
+      const data = await response.json();
+      console.log("Respuesta del servidor:", data);
+      onSubmit(nuevaResena); // Llama al callback onSubmit con la nueva reseña
+    } catch (error) {
+      console.error("Error al enviar la reseña:", error.message || error);
+    }
   };
 
   const handleRatingChange = (value) => {
@@ -75,6 +116,8 @@ EvaluacionModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  colaboradorId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };
 
 export default EvaluacionModal;
