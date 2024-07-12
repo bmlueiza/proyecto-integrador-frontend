@@ -2,12 +2,16 @@ import axios from "axios";
 import React, { useState } from "react";
 import "./LoginForm.css";
 import Button from "../../Button/Button";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [route, setRoute] = useState("/usuarios/usuarioLogin");
+
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -19,14 +23,18 @@ const LoginForm = ({ onLogin }) => {
         },
       });
 
-      if (response.status === 200) {
-        {
-          onLogin;
-        }
+      {
+        onLogin;
+      }
+      if (response.data) {
         response.data;
-        setMessage("Exito de sesión exitoso!");
+        setMessage("¡Inicio de sesión exitoso!");
+        setEmail("");
+        setPassword("");
+
+        navigate("/");
       } else {
-        setMessage("Login fallido.");
+        setMessage("Login fallido. Verfique su correo y contraseña");
       }
     } catch (error) {
       setMessage("Ocurrió un error durante el inicio de sesión");
@@ -78,9 +86,21 @@ const LoginForm = ({ onLogin }) => {
       <div className="login__div">
         <Button
           type="submit"
-          text="A mingear!"
+          text="¡A mingear!"
           className="button__text"
-          onClick={handleSubmit}
+          onClick={navigate("/login")}
+        />
+        <Button
+          type="submit"
+          text="Crear cuenta usuario"
+          className="button__text"
+          onClick={navigate("/registro-usuario")}
+        />
+        <Button
+          type="submit"
+          text="Crear cuenta colaborador"
+          className="button__text"
+          onClick={navigate("/registro-colaborador")}
         />
         {message && <h2 className="login__header">{message}</h2>}
       </div>
