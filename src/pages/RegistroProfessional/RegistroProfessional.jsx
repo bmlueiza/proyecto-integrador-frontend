@@ -6,11 +6,9 @@ import Footer from "../../components/Footer/Footer";
 function RegistroProfessional() {
   return (
     <>
-      <Navbar />
       <h1 className="title_home">Minga</h1>
       <hr className="divider" />
       <RegisterProfessional />
-      <Footer />
     </>
   );
 }
